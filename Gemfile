@@ -19,6 +19,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+gem 'font-awesome-sass', '~> 4.6.2'
 gem 'devise'
 gem 'high_voltage'
 group :development do
