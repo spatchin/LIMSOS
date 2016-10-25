@@ -4,4 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
+
+  resources :feedstocks
+  resources :biomass_types
+  resources :biomasses
+  resources :harvests
 end

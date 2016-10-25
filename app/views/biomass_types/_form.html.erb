@@ -1,0 +1,17 @@
+<%= form_for(biomass_type) do |f| %>
+  <% if biomass_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(biomass_type.errors.count, "error") %> prohibited this biomass_type from being saved:</h2>
+
+      <ul>
+      <% biomass_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

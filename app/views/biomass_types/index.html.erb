@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Biomass Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @biomass_types.each do |biomass_type| %>
+      <tr>
+        <td><%= link_to 'Show', biomass_type %></td>
+        <td><%= link_to 'Edit', edit_biomass_type_path(biomass_type) %></td>
+        <td><%= link_to 'Destroy', biomass_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Biomass Type', new_biomass_type_path %>

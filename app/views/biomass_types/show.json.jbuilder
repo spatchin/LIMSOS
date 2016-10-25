@@ -1,0 +1,1 @@
+json.partial! "biomass_types/biomass_type", biomass_type: @biomass_type
