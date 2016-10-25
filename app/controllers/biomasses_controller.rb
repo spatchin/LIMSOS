@@ -1,3 +1,2 @@
 class BiomassesController < ApplicationController
-
 end

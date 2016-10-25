@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BiomassesControllerTest < ActionDispatch::IntegrationTest
+class BiomassTypesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
