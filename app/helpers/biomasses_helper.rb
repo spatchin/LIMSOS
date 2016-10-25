@@ -1,0 +1,2 @@
+module BiomassesHelper
+end

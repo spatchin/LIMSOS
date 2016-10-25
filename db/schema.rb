@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022193036) do
+ActiveRecord::Schema.define(version: 20161025205202) do
+
+  create_table "biomass_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "biomasses", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "feedstocks", force: :cascade do |t|
+    t.integer  "biomass_type_id"
+    t.integer  "harvest_id"
+    t.float    "amount"
+    t.string   "unit"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["biomass_type_id"], name: "index_feedstocks_on_biomass_type_id"
+    t.index ["harvest_id"], name: "index_feedstocks_on_harvest_id"
+  end
+
+  create_table "harvests", force: :cascade do |t|
+    t.integer  "biomass_id"
+    t.string   "plot_location"
+    t.string   "plot_information"
+    t.string   "fertilizer_types"
+    t.string   "fertilizer_applications"
+    t.string   "soil_information"
+    t.string   "weather_information"
+    t.string   "storage_location"
+    t.date     "planting_date"
+    t.date     "harvest_date"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["biomass_id"], name: "index_harvests_on_biomass_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

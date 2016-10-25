@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  biomass: one
+  plot_location: MyString
+  plot_information: MyString
+  fertilizer_types: MyString
+  fertilizer_applications: MyString
+  soil_information: MyString
+  weather_information: MyString
+  storage_location: MyString
+  planting_date: 2016-10-25
+  harvest_date: 2016-10-25
+
+two:
+  biomass: two
+  plot_location: MyString
+  plot_information: MyString
+  fertilizer_types: MyString
+  fertilizer_applications: MyString
+  soil_information: MyString
+  weather_information: MyString
+  storage_location: MyString
+  planting_date: 2016-10-25
+  harvest_date: 2016-10-25

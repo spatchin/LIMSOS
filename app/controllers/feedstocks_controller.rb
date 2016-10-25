@@ -1,0 +1,2 @@
+class FeedstocksController < ApplicationController
+end
