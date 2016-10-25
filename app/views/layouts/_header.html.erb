@@ -9,6 +9,10 @@
       <ul class="nav navbar-nav navbar-left">
         <li <%=raw 'class="active"' if current_page?(root_path) %>><%= link_to 'Home', root_path %></li>
         <li <%=raw 'class="active"' if current_page?('/about') %>><%= link_to 'About', '/about' %></li>
+        <li <%=raw 'class="active"' if current_page?('/biomass_types') %>><%= link_to 'Biomass types', '/biomass_types' %></li>
+        <li <%=raw 'class="active"' if current_page?('/biomasses') %>><%= link_to 'Biomasses', '/biomasses' %></li>
+        <li <%=raw 'class="active"' if current_page?('/feedstocks') %>><%= link_to 'Feedstocks', '/feedstocks' %></li>
+        <li <%=raw 'class="active"' if current_page?('/harvests') %>><%= link_to 'Harvests', '/harvests' %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
