@@ -1,3 +1,3 @@
 class Biomass < ApplicationRecord
-  has_many :feedstocks
+  has_many :harvests
 end
