@@ -35,4 +35,5 @@ group :production do
 end
 gem 'annotate'
 gem 'rails_admin', '~> 1.0'
+gem 'cancancan', '~> 1.10'
 gem 'faker'

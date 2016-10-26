@@ -23,7 +23,8 @@ RailsAdmin.config do |config|
   config.show_gravatar = false
 
   config.actions do
-    index                         # mandatory
+    dashboard
+    index
     new
     export
     bulk_delete

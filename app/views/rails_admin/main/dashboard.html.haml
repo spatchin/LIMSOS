@@ -1,0 +1,25 @@
+- if @abstract_models
+  - @abstract_models.each_slice(4) do |abstract_models|
+    .row
+      - abstract_models.each do |abstract_model|
+        - if authorized? :index, abstract_model
+          - index_path = index_path(model_name: abstract_model.to_param)
+          .col-md-3
+            .panel.panel-primary
+              .panel-heading
+                .row
+                  .col-xs-3
+                    = icon('tasks fa-5x')
+                  .col-xs-9.text-right
+                    %h2
+                      = @count[abstract_model.model.name]
+              %a.pjax{href: index_path} 
+                .panel-footer
+                  %span.pull-left= capitalize_first_letter(abstract_model.config.label_plural)
+                  %ul.inline.list-inline.pull-right= menu_for :collection, abstract_model, nil, true
+                  .clearfix
+- if @auditing_adapter && authorized?(:history_index)
+  #block-tables.block
+    .content
+      %h2= t("admin.actions.history_index.menu")
+      = render partial: 'rails_admin/main/dashboard_history'
