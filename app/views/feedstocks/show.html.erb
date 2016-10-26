@@ -1,4 +1,22 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Biomass type:</strong>
+  <%= @feedstock.biomass_type %>
+</p>
+
+<p>
+  <strong>Harvest:</strong>
+  <%= @feedstock.harvest %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @feedstock.amount %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @feedstock.unit %>
+</p>
 
 <%= link_to 'Edit', edit_feedstock_path(@feedstock) %> |
-<%= link_to 'Back', feedstocks_path %>
+<%= link_to 'Back', :back %>

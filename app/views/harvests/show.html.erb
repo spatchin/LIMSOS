@@ -1,4 +1,52 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Biomass:</strong>
+  <%= @harvest.biomass %>
+</p>
+
+<p>
+  <strong>Plot location:</strong>
+  <%= @harvest.plot_location %>
+</p>
+
+<p>
+  <strong>Plot information:</strong>
+  <%= @harvest.plot_information %>
+</p>
+
+<p>
+  <strong>Fertilizer types:</strong>
+  <%= @harvest.fertilizer_types %>
+</p>
+
+<p>
+  <strong>Fertilizer applications:</strong>
+  <%= @harvest.fertilizer_applications %>
+</p>
+
+<p>
+  <strong>Soil information:</strong>
+  <%= @harvest.soil_information %>
+</p>
+
+<p>
+  <strong>Weather information:</strong>
+  <%= @harvest.weather_information %>
+</p>
+
+<p>
+  <strong>Storage location:</strong>
+  <%= @harvest.storage_location %>
+</p>
+
+<p>
+  <strong>Planting date:</strong>
+  <%= @harvest.planting_date %>
+</p>
+
+<p>
+  <strong>Harvest date:</strong>
+  <%= @harvest.harvest_date %>
+</p>
 
 <%= link_to 'Edit', edit_harvest_path(@harvest) %> |
-<%= link_to 'Back', harvests_path %>
+<%= link_to 'Back', :back %>

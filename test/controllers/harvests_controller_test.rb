@@ -17,7 +17,7 @@ class HarvestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create harvest" do
     assert_difference('Harvest.count') do
-      post harvests_url, params: { harvest: {  } }
+      post harvests_url, params: { harvest: { biomass_id: @harvest.biomass_id, fertilizer_applications: @harvest.fertilizer_applications, fertilizer_types: @harvest.fertilizer_types, harvest_date: @harvest.harvest_date, planting_date: @harvest.planting_date, plot_information: @harvest.plot_information, plot_location: @harvest.plot_location, soil_information: @harvest.soil_information, storage_location: @harvest.storage_location, weather_information: @harvest.weather_information } }
     end
 
     assert_redirected_to harvest_url(Harvest.last)
@@ -34,7 +34,7 @@ class HarvestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update harvest" do
-    patch harvest_url(@harvest), params: { harvest: {  } }
+    patch harvest_url(@harvest), params: { harvest: { biomass_id: @harvest.biomass_id, fertilizer_applications: @harvest.fertilizer_applications, fertilizer_types: @harvest.fertilizer_types, harvest_date: @harvest.harvest_date, planting_date: @harvest.planting_date, plot_information: @harvest.plot_information, plot_location: @harvest.plot_location, soil_information: @harvest.soil_information, storage_location: @harvest.storage_location, weather_information: @harvest.weather_information } }
     assert_redirected_to harvest_url(@harvest)
   end
 

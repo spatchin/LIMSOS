@@ -17,7 +17,7 @@ class BiomassTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create biomass_type" do
     assert_difference('BiomassType.count') do
-      post biomass_types_url, params: { biomass_type: {  } }
+      post biomass_types_url, params: { biomass_type: { name: @biomass_type.name } }
     end
 
     assert_redirected_to biomass_type_url(BiomassType.last)
@@ -34,7 +34,7 @@ class BiomassTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update biomass_type" do
-    patch biomass_type_url(@biomass_type), params: { biomass_type: {  } }
+    patch biomass_type_url(@biomass_type), params: { biomass_type: { name: @biomass_type.name } }
     assert_redirected_to biomass_type_url(@biomass_type)
   end
 

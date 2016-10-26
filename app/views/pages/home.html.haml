@@ -1,0 +1,13 @@
+%h1 Welcome
+%p 
+  There are:
+  %br
+  = pluralize(User.all.length, 'user')
+  %br
+  = pluralize(BiomassType.all.length, 'biomass type')
+  %br
+  = pluralize(Biomass.all.length, 'biomass')
+  %br
+  = pluralize(Feedstock.all.length, 'feedstock')
+  %br
+  = pluralize(Harvest.all.length, 'harvest')

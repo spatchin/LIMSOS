@@ -17,7 +17,7 @@ class FeedstocksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create feedstock" do
     assert_difference('Feedstock.count') do
-      post feedstocks_url, params: { feedstock: {  } }
+      post feedstocks_url, params: { feedstock: { amount: @feedstock.amount, biomass_type_id: @feedstock.biomass_type_id, harvest_id: @feedstock.harvest_id, unit: @feedstock.unit } }
     end
 
     assert_redirected_to feedstock_url(Feedstock.last)
@@ -34,7 +34,7 @@ class FeedstocksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update feedstock" do
-    patch feedstock_url(@feedstock), params: { feedstock: {  } }
+    patch feedstock_url(@feedstock), params: { feedstock: { amount: @feedstock.amount, biomass_type_id: @feedstock.biomass_type_id, harvest_id: @feedstock.harvest_id, unit: @feedstock.unit } }
     assert_redirected_to feedstock_url(@feedstock)
   end
 

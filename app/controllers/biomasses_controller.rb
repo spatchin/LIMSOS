@@ -69,6 +69,6 @@ class BiomassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def biomass_params
-      params.fetch(:biomass, {})
+      params.require(:biomass).permit(:name)
     end
 end

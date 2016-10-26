@@ -6,6 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.destroy_all
+Biomass.destroy_all
+BiomassType.destroy_all
+Feedstock.destroy_all
+Harvest.destroy_all
 
 user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password'})
 user.save
@@ -14,3 +18,15 @@ p user
 empty_user = User.new({email: 'test2@example.com', password: 'password', password_confirmation: 'password'})
 empty_user.save
 p empty_user
+
+1000.times do |i|
+  a = Biomass.create(name: Faker::Beer.name)
+  b = BiomassType.create(name: Faker::Beer.style)
+  c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
+  d = Harvest.create(plot_location: Faker::Address.street_address, plot_information: Faker::Hacker.say_something_smart, planting_date: Faker::Time.backward(100))
+
+  p a
+  p b
+  p c
+  p d
+end

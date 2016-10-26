@@ -69,6 +69,6 @@ class FeedstocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedstock_params
-      params.fetch(:feedstock, {})
+      params.require(:feedstock).permit(:biomass_type_id, :harvest_id, :amount, :unit)
     end
 end

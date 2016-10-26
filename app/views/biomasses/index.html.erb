@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
   <tbody>
     <% @biomasses.each do |biomass| %>
       <tr>
+        <td><%= biomass.name %></td>
         <td><%= link_to 'Show', biomass %></td>
         <td><%= link_to 'Edit', edit_biomass_path(biomass) %></td>
         <td><%= link_to 'Destroy', biomass, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -69,6 +69,6 @@ class HarvestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def harvest_params
-      params.fetch(:harvest, {})
+      params.require(:harvest).permit(:biomass_id, :plot_location, :plot_information, :fertilizer_types, :fertilizer_applications, :soil_information, :weather_information, :storage_location, :planting_date, :harvest_date)
     end
 end
