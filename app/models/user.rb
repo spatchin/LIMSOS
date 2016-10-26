@@ -23,4 +23,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :biomasses
+  has_many :biomass_types
+  has_many :feedstocks
+  has_many :harvests
 end

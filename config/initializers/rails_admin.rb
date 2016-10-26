@@ -23,9 +23,6 @@ RailsAdmin.config do |config|
   config.show_gravatar = false
 
   config.actions do
-    dashboard do
-      statistics false
-    end                   # mandatory
     index                         # mandatory
     new
     export
@@ -38,5 +35,29 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model BiomassType do
+    list do
+      exclude_fields :owner
+    end
+  end
+
+  config.model Biomass do
+    list do
+      exclude_fields :owner
+    end
+  end
+
+  config.model Feedstock do
+    list do
+      exclude_fields :owner
+    end
+  end
+
+  config.model Harvest do
+    list do
+      exclude_fields :owner
+    end
   end
 end

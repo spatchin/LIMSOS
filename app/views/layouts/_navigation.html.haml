@@ -24,7 +24,7 @@
               %li= link_to icon('cog', 'Profile'), edit_registration_path(current_user)
               %li= link_to icon('sign-out', 'Log out'), destroy_session_path(current_user), method: :delete
         - else
-          %li{class: ('active' if current_page?(new_session_path))}
-            = link_to icon('sign-in', 'Log in'), new_session_path
-          %li{class: ('active' if current_page?(new_registration_path))}
-            = link_to icon('user_plus', 'Sign up'), new_registration_path
+          %li{class: ('active' if current_page?('/users/sign_in'))}
+            = link_to icon('sign-in', 'Log in'), '/users/sign_in'
+          %li{class: ('active' if current_page?('/users/sign_up'))}
+            = link_to icon('user_plus', 'Sign up'), '/users/sign_up'

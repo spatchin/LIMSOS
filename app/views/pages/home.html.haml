@@ -2,12 +2,12 @@
 %p 
   There are:
   %br
-  = pluralize(User.all.length, 'user')
+  = pluralize(User.count, 'user')
   %br
-  = pluralize(BiomassType.all.length, 'biomass type')
+  = pluralize(BiomassType.count, 'biomass type')
   %br
-  = pluralize(Biomass.all.length, 'biomass')
+  = pluralize(Biomass.count, 'biomass')
   %br
-  = pluralize(Feedstock.all.length, 'feedstock')
+  = pluralize(Feedstock.count, 'feedstock')
   %br
-  = pluralize(Harvest.all.length, 'harvest')
+  = pluralize(Harvest.count, 'harvest')

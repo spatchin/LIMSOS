@@ -21,12 +21,22 @@ p empty_user
 
 1000.times do |i|
   a = Biomass.create(name: Faker::Beer.name)
-  b = BiomassType.create(name: Faker::Beer.style)
-  c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
-  d = Harvest.create(plot_location: Faker::Address.street_address, plot_information: Faker::Hacker.say_something_smart, planting_date: Faker::Time.backward(100))
-
+  a.owner = user
+  a.save
   p a
+
+  b = BiomassType.create(name: Faker::Beer.style)
+  b.owner = user
+  b.save
   p b
+
+  c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
+  c.owner = user
+  c.save
   p c
+
+  d = Harvest.create(plot_location: Faker::Address.street_address, plot_information: Faker::Hacker.say_something_smart, planting_date: Faker::Time.backward(100))
+  d.owner = user
+  d.save
   p d
 end

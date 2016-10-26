@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025205202) do
+ActiveRecord::Schema.define(version: 20161026170306) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   create_table "biomasses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   create_table "feedstocks", force: :cascade do |t|
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161025205202) do
     t.string   "unit"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "owner_id"
     t.index ["biomass_type_id"], name: "index_feedstocks_on_biomass_type_id"
     t.index ["harvest_id"], name: "index_feedstocks_on_harvest_id"
   end
@@ -48,6 +51,7 @@ ActiveRecord::Schema.define(version: 20161025205202) do
     t.date     "harvest_date"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "owner_id"
     t.index ["biomass_id"], name: "index_harvests_on_biomass_id"
   end
 
