@@ -8,8 +8,8 @@
 .page-header
   - if @page_name.downcase == 'site administration'
     - @page_name = 'Home' 
-  - else
-    - @page_name = @page_name.split[2..-1].map(&:capitalize).join(' ')
+  - elsif @page_name != 'Import'
+    - @page_name = @page_name.present? ? @page_name.split[2..-1].map(&:capitalize).join(' ') : 'import'
 
   %h1= @page_name
 - flash && flash.each do |key, value|

@@ -30,8 +30,6 @@ RailsAdmin.config do |config|
     edit
     delete
     # show_in_app
-
-    ## With an audit adapter, you can add:
     history_index
     history_show
   end
@@ -43,6 +41,9 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :owner
     end
+    import do
+      exclude_fields :owner
+    end
   end
 
   config.model Biomass do
@@ -51,6 +52,9 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+    end
+    import do
+      # exclude_fields :owner
     end
   end
 
@@ -61,6 +65,9 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :owner
     end
+    import do
+      exclude_fields :owner
+    end
   end
 
   config.model Harvest do
@@ -69,6 +76,22 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+    end
+    import do
+      exclude_fields :owner
+    end
+  end
+
+  config.model User do
+    export do
+      field :id
+      field :username
+      field :email
+    end
+    import do
+      field :id
+      field :username
+      field :email
     end
   end
 end

@@ -25,4 +25,8 @@ class Harvest < ApplicationRecord
   validates :owner, presence: true
 
   has_paper_trail
+
+  def before_import_save(record)
+    record.owner = current_user
+  end  
 end

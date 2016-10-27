@@ -4,7 +4,7 @@
       - abstract_models.each do |abstract_model|
         - if authorized? :index, abstract_model
           - index_path = index_path(model_name: abstract_model.to_param)
-          .col-md-3
+          .col-sm-3
             .panel.panel-info
               .panel-heading
                 .row
