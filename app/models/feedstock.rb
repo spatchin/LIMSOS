@@ -18,4 +18,6 @@ class Feedstock < ApplicationRecord
   belongs_to :harvest
 
   validates :owner, presence: true
+
+  has_paper_trail
 end

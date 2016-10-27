@@ -15,7 +15,11 @@ user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.
 user.save
 p user
 
-admin_user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'test2@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
+user2 = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'test2@example.com', password: 'password', password_confirmation: 'password'})
+user2.save
+p user2
+
+admin_user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
 admin_user.save
 p admin_user
 

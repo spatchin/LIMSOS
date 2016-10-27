@@ -14,4 +14,6 @@ class BiomassType < ApplicationRecord
 
   validates :name, presence: true
   validates :owner, presence: true
+
+  has_paper_trail
 end

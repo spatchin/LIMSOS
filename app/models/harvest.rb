@@ -23,4 +23,6 @@ class Harvest < ApplicationRecord
   belongs_to :biomass
 
   validates :owner, presence: true
+
+  has_paper_trail
 end
