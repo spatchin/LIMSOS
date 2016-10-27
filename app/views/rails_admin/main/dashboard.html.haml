@@ -5,7 +5,7 @@
         - if authorized? :index, abstract_model
           - index_path = index_path(model_name: abstract_model.to_param)
           .col-md-3
-            .panel.panel-primary
+            .panel.panel-info
               .panel-heading
                 .row
                   .col-xs-3
@@ -13,7 +13,7 @@
                   .col-xs-9.text-right
                     %h2
                       = @count[abstract_model.model.name]
-              %a.pjax{href: index_path} 
+              %a.pjax.text-info{href: index_path}
                 .panel-footer
                   %span.pull-left
                     %strong= capitalize_first_letter(abstract_model.config.label_plural)
