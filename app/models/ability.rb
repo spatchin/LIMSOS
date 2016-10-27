@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-    user ||= User.new # guest user (not logged in)
+    # user ||= User.new # guest user (not logged in)
     #   if user.admin?
     #     can :manage, :all
     #   else
@@ -28,7 +28,17 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    can :index, BiomassType, owner_id: user.id
-    can :destroy, BiomassType, owner_id: user.id
+    user ||= User.new # guest user
+
+    can :access, :rails_admin
+    can :dashboard
+    if user
+      can :manage, Biomass, owner_id: user.id
+      can :manage, BiomassType, owner_id: user.id
+      can :manage, Feedstock, owner_id: user.id
+      can :manage, Harvest, owner_id: user.id
+
+      cannot :manage, User unless user.admin?
+    end
   end
 end

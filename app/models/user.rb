@@ -16,6 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  name                   :string
+#  role                   :string           default("User")
 #
 
 class User < ApplicationRecord
@@ -27,4 +28,10 @@ class User < ApplicationRecord
   has_many :biomass_types
   has_many :feedstocks
   has_many :harvests
+
+  validates :role, inclusion: { in: %w(Admin User) }
+
+  def admin?
+    role == 'Admin'
+  end
 end

@@ -15,11 +15,11 @@ user = User.new({email: 'test@example.com', password: 'password', password_confi
 user.save
 p user
 
-empty_user = User.new({email: 'test2@example.com', password: 'password', password_confirmation: 'password'})
+empty_user = User.new({email: 'test2@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
 empty_user.save
 p empty_user
 
-1000.times do |i|
+100.times do |i|
   a = Biomass.create(name: Faker::Beer.name)
   a.owner = user
   a.save
@@ -31,7 +31,7 @@ p empty_user
   p b
 
   c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
-  c.owner = user
+  c.owner = empty_user
   c.save
   p c
 

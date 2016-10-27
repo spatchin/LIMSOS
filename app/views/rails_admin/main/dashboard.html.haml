@@ -15,7 +15,8 @@
                       = @count[abstract_model.model.name]
               %a.pjax{href: index_path} 
                 .panel-footer
-                  %span.pull-left= capitalize_first_letter(abstract_model.config.label_plural)
+                  %span.pull-left
+                    %strong= capitalize_first_letter(abstract_model.config.label_plural)
                   %ul.inline.list-inline.pull-right= menu_for :collection, abstract_model, nil, true
                   .clearfix
 - if @auditing_adapter && authorized?(:history_index)
