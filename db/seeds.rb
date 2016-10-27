@@ -6,37 +6,37 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.destroy_all
-Biomass.destroy_all
-BiomassType.destroy_all
 Feedstock.destroy_all
 Harvest.destroy_all
+Biomass.destroy_all
+BiomassType.destroy_all
 
-user = User.new({email: 'test@example.com', password: 'password', password_confirmation: 'password'})
+user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'test@example.com', password: 'password', password_confirmation: 'password'})
 user.save
 p user
 
-empty_user = User.new({email: 'test2@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
-empty_user.save
-p empty_user
+admin_user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'test2@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
+admin_user.save
+p admin_user
 
 100.times do |i|
   a = Biomass.create(name: Faker::Beer.name)
   a.owner = user
-  a.save
+  a.save!
   p a
 
   b = BiomassType.create(name: Faker::Beer.style)
   b.owner = user
-  b.save
+  b.save!
   p b
 
   c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
-  c.owner = empty_user
-  c.save
+  c.owner = user
+  c.save!
   p c
 
   d = Harvest.create(plot_location: Faker::Address.street_address, plot_information: Faker::Hacker.say_something_smart, planting_date: Faker::Time.backward(100))
   d.owner = user
-  d.save
+  d.save!
   p d
 end

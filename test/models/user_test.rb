@@ -15,8 +15,10 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  name                   :string
 #  role                   :string           default("User")
+#  username               :string
+#  first_name             :string
+#  last_name              :string
 #
 
 require 'test_helper'

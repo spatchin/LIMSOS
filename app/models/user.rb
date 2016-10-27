@@ -15,8 +15,10 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  name                   :string
 #  role                   :string           default("User")
+#  username               :string
+#  first_name             :string
+#  last_name              :string
 #
 
 class User < ApplicationRecord
@@ -24,12 +26,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :biomasses
   has_many :biomass_types
   has_many :feedstocks
   has_many :harvests
 
   validates :role, inclusion: { in: %w(Admin User) }
+  validates :username, :email, :first_name, :last_name, presence: true
 
   def admin?
     role == 'Admin'
