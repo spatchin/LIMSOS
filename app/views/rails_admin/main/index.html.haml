@@ -101,14 +101,10 @@
               %td.other.right= link_to "...", @other_right_link, class: 'pjax'
             %td.last.links
               %ul.inline.list-inline= menu_for :member, @abstract_model, object, true
-
-    - if @objects.respond_to?(:total_count)
-      - total_count = @objects.total_count.to_i
-      .row
-        .col-md-6= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
-      .row
-        .col-md-6= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") unless total_count > 100 || total_count <= @objects.to_a.size
-      .clearfix.total-count= "#{total_count} #{@model_config.pluralize(total_count).downcase}"
-
-    - else
-      .clearfix.total-count= "#{@objects.size} #{@model_config.pluralize(@objects.size).downcase}"
+    - total_count = @objects.respond_to?(:total_count) ? @objects.total_count.to_i : 0
+    .row
+      .col-xs-6
+        = paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
+        %br
+        = page_entries_info @objects
+      .col-md-6.text-right= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") if total_count > 20

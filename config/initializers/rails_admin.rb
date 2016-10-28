@@ -52,9 +52,14 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+      field :owner_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
     end
     import do
-      # exclude_fields :owner
+      exclude_fields :owner
     end
   end
 
