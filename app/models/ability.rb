@@ -14,6 +14,8 @@ class Ability
       can :manage, Feedstock, owner_id: user.id
       can :manage, Harvest, owner_id: user.id
       cannot :manage, User
+      # add new model permissions here
+      
     end
   end
 end

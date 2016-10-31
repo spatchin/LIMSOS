@@ -58,6 +58,9 @@ RailsAdmin.config do |config|
   config.model User do
     include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
   end
+
+  # Add new model configurations here
+  
 end
 
 # DRYing up owner configurations for models
