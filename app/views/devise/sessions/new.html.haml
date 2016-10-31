@@ -1,0 +1,18 @@
+.row
+  .col-md-4.col-md-offset-4
+    .panel.panel-default{style: 'margin-top: 20%;'}
+      .panel-heading
+        %h4 Sign in
+      .panel-body
+        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form'}) do |f|
+          = f.email_field :email, autofocus: true, icon: 'user'
+          = f.password_field :password, icon: 'lock'
+          = f.check_box :remember_me
+          = f.submit 'Sign in', class: 'btn btn-success', style: 'width: 100%; margin-bottom: 10px;'
+          .row
+            .col-sm-6
+              - if devise_mapping.registerable?
+                = link_to 'Sign up', new_registration_path(resource_name)
+            .col-sm-6.text-right
+              -if devise_mapping.recoverable?
+                = link_to "Forgot password?", new_password_path(resource_name)
