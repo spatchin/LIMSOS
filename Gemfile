@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
-gem 'font-awesome-sass', '~> 4.6.2'
+gem 'font-awesome-sass'
 gem 'devise'
 gem 'high_voltage'
 group :development, :test do

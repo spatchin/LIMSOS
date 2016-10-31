@@ -1,3 +1,5 @@
+require Rails.root.join('lib', 'rails_admin', 'order.rb')
+
 RailsAdmin.config do |config|
   ## == Devise ==
   config.authenticate_with do
@@ -21,12 +23,16 @@ RailsAdmin.config do |config|
   config.show_gravatar = false
 
   config.actions do
+    # root actions
     dashboard
+    # collection actions
     index
     new
     export
     bulk_delete
+    # member actions
     show
+    order
     edit
     delete
     # show_in_app
@@ -40,6 +46,11 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+      field :owner_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
     end
     import do
       exclude_fields :owner
@@ -69,6 +80,11 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+      field :owner_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
     end
     import do
       exclude_fields :owner
@@ -81,6 +97,11 @@ RailsAdmin.config do |config|
     end
     edit do
       exclude_fields :owner
+      field :owner_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
     end
     import do
       exclude_fields :owner
@@ -92,11 +113,12 @@ RailsAdmin.config do |config|
       field :id
       field :username
       field :email
+      # TODO: add name fields
     end
     import do
-      field :id
       field :username
       field :email
+      # TODO: add name fields
     end
   end
 end

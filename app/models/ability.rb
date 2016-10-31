@@ -11,13 +11,9 @@ class Ability
       can :import, :all
     else
       can :manage, Biomass, owner_id: user.id
-      can :import, Biomass
       can :manage, BiomassType, owner_id: user.id
-      can :import, BiomassType
       can :manage, Feedstock, owner_id: user.id
-      can :import, Feedstock
       can :manage, Harvest, owner_id: user.id
-      can :import, Harvest
     end
   end
 end

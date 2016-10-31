@@ -1,0 +1,11 @@
+en:
+  admin:
+    actions:
+      dashboard:
+        title: "Dashboard"
+        menu: "Dashboard"
+        breadcrumb: "Dashboard"
+      order: 
+        title: "Order"
+        menu: "Order"
+        breadcrumb: "Order"

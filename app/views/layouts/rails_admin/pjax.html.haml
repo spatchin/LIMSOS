@@ -6,11 +6,6 @@
   $('#navbar > ul > li.active').removeClass('active');
   $('#navbar > ul > li##{active_li}').addClass('active');
 .page-header
-  - if @page_name.downcase == 'site administration'
-    - @page_name = 'Home' 
-  - elsif @page_name != 'Import'
-    - @page_name = @page_name.present? ? @page_name.split[2..-1].map(&:capitalize).join(' ') : 'import'
-
   %h1= @page_name
 - flash && flash.each do |key, value|
   .alert.alert-dismissible{class: flash_alert_class(key)}
