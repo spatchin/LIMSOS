@@ -1,5 +1,8 @@
-require "rails_admin_import/import_logger"
+require 'rails_admin_import/import_logger'
 
+# This file is used to override RailsAdmin's default find_or_create_object method.
+# The only difference in this method is line 22: object.owner_id = params[:owner_id].
+# This is necessary for an object's belongs_to :user relationship.
 module RailsAdminImport
   class Importer
     private
@@ -17,7 +20,7 @@ module RailsAdminImport
 
       if object.nil?
         object = model.new(new_attrs)
-        object.owner_id = params[:owner_id]
+        object.owner_id = params[:owner_id] if object.respond_to?(:owner_id)
       else
         object.attributes = new_attrs.except(update.to_sym)
       end

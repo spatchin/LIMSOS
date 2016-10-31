@@ -34,7 +34,7 @@ p admin_user
   b.save!
   p b
 
-  c = Feedstock.create(amount: Faker::Number.positive.floor, unit: Faker::Color.color_name)
+  c = Feedstock.create(amount: Faker::Number.positive.floor, unit: %w(g lb kg).sample)
   c.owner = user
   c.save!
   p c
