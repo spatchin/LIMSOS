@@ -40,6 +40,17 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  # override attribute writer
+  def first_name=(val)
+    write_attribute(:first_name, val.capitalize)
+  end
+
+  # override attribute writer
+  def last_name=(val)
+    write_attribute(:last_name, val.capitalize)
+  end
+
+  # getter for admin
   def admin?
     role == 'Admin'
   end
