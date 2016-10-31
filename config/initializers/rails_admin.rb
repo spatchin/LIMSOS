@@ -41,84 +41,56 @@ RailsAdmin.config do |config|
   end
 
   config.model BiomassType do
-    list do
-      exclude_fields :owner
-    end
-    edit do
-      exclude_fields :owner
-      field :owner_id, :hidden do
-        default_value do
-          bindings[:view]._current_user.id
-        end
-      end
-    end
-    import do
-      exclude_fields :owner
-    end
+    owner_config
   end
 
   config.model Biomass do
-    list do
-      exclude_fields :owner
-    end
-    edit do
-      exclude_fields :owner
-      field :owner_id, :hidden do
-        default_value do
-          bindings[:view]._current_user.id
-        end
-      end
-    end
-    import do
-      exclude_fields :owner
-    end
+    owner_config
   end
 
   config.model Feedstock do
-    list do
-      exclude_fields :owner
-    end
-    edit do
-      exclude_fields :owner
-      field :owner_id, :hidden do
-        default_value do
-          bindings[:view]._current_user.id
-        end
-      end
-    end
-    import do
-      exclude_fields :owner
-    end
+    owner_config
   end
 
   config.model Harvest do
-    list do
-      exclude_fields :owner
-    end
-    edit do
-      exclude_fields :owner
-      field :owner_id, :hidden do
-        default_value do
-          bindings[:view]._current_user.id
-        end
-      end
-    end
-    import do
-      exclude_fields :owner
-    end
+    owner_config
   end
 
   config.model User do
     export do
-      field :id
       field :username
       field :email
-      # TODO: add name fields
+      field :first_name
+      field :last_name
+      field :role
     end
     import do
       field :username
       field :email
-      # TODO: add name fields
+      field :first_name
+      field :last_name
+      field :role
     end
+  end
+end
+
+# DRYing up owner configurations for models
+def owner_config
+  list do
+    # Don't show owner column in index
+    exclude_fields :owner
+  end
+  edit do
+    # Don't show owner field in new/edit
+    exclude_fields :owner
+    field :owner_id, :hidden do
+      default_value do
+        bindings[:view]._current_user.id
+      end
+    end
+  end
+  import do
+    # Don't allow import to configure owner
+    exclude_fields :owner
   end
 end

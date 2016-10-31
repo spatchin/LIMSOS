@@ -20,6 +20,7 @@
                   %ul.inline.list-inline.pull-right= menu_for :collection, abstract_model, nil, true
                   .clearfix
 - if @auditing_adapter && authorized?(:history_index)
+  %hr
   #block-tables.block
     .content
       %h2= t("admin.actions.history_index.menu")
