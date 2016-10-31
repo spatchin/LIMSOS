@@ -9,8 +9,7 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   config.authorize_with :cancan
-
-  ## == Pundit ==
+  # or
   # config.authorize_with :pundit
 
   ## == PaperTrail ==
@@ -57,20 +56,7 @@ RailsAdmin.config do |config|
   end
 
   config.model User do
-    export do
-      field :username
-      field :email
-      field :first_name
-      field :last_name
-      field :role
-    end
-    import do
-      field :username
-      field :email
-      field :first_name
-      field :last_name
-      field :role
-    end
+    include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
   end
 end
 

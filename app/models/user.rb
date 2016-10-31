@@ -34,7 +34,7 @@ class User < ApplicationRecord
   has_many :feedstocks
   has_many :harvests
 
-  validates :role, inclusion: { in: ROLES }
+  validates :role, presence: true, inclusion: { in: ROLES }
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
