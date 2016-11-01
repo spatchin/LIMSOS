@@ -9,13 +9,14 @@ class Ability
     if user.admin?
       can :manage, :all
     else
+      cannot :manage, User
       can :manage, Biomass, owner_id: user.id
       can :manage, BiomassType, owner_id: user.id
       can :manage, Feedstock, owner_id: user.id
       can :manage, Harvest, owner_id: user.id
-      cannot :manage, User
-      # add new model permissions here
-      
+      # DO NOT DELETE THE FOLLOWING COMMENT
+      # Add new model permissions here
+
     end
   end
 end

@@ -10,10 +10,11 @@
 #
 
 class Biomass < ApplicationRecord
+  has_paper_trail
+  
   belongs_to :owner, class_name: 'User'
 
   validates :name, presence: true
   validates :owner, presence: true
 
-  has_paper_trail
 end

@@ -59,6 +59,7 @@ RailsAdmin.config do |config|
     include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
   end
 
+  # DO NOT DELETE THE FOLLOWING COMMENT
   # Add new model configurations here
   
 end

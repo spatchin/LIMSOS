@@ -5,6 +5,8 @@ en:
         title: "Dashboard"
         menu: "Dashboard"
         breadcrumb: "Dashboard"
+      index:
+        title: "%{model_label_plural}"
       order: 
         title: "Order"
         menu: "Order"
