@@ -15,7 +15,7 @@ class RamodelGenerator < Rails::Generators::NamedBase
     end
   end
 
-  def add_to_cancan
+  def add_to_model
     insert_into_file "#{Rails.root}/app/models/#{name.underscore}.rb", after: "class #{name.camelize} < ApplicationRecord\n" do
       "\thas_paper_trail"
     end
