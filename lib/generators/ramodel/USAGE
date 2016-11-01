@@ -1,0 +1,8 @@
+Description:
+    This generator creates a model and adds it to the rails admin, paper trail and cancan config files for use by the Rails Admin gem.
+
+Example:
+    rails generate ramodel Biomass name:string
+
+    This will create:
+        what/will/it/create

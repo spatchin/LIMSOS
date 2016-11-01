@@ -31,7 +31,7 @@ group :production do
   gem 'rails_12factor'
 end
 gem 'annotate'
-gem 'rails_admin', '~> 1.0'
+gem 'rails_admin'
 gem 'rails_admin_import'
 gem 'cancancan', '~> 1.10'
 gem 'faker'
