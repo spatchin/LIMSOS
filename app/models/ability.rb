@@ -14,7 +14,6 @@ class Ability
       can :manage, BiomassType, owner_id: user.id
       can :manage, Feedstock, owner_id: user.id
       can :manage, Harvest, owner_id: user.id
-      # DO NOT DELETE THE FOLLOWING COMMENT
       # Add new model permissions here
 
     end

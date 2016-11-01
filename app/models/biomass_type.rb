@@ -17,7 +17,4 @@ class BiomassType < ApplicationRecord
   validates :name, presence: true
   validates :owner, presence: true
 
-  def before_import_save(record)
-    record.owner = current_user
-  end  
 end

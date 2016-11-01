@@ -39,6 +39,10 @@ RailsAdmin.config do |config|
     history_show
   end
 
+  config.model User do
+    include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
+  end
+
   config.model BiomassType do
     owner_config
   end
@@ -55,13 +59,8 @@ RailsAdmin.config do |config|
     owner_config
   end
 
-  config.model User do
-    include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
-  end
-
-  # DO NOT DELETE THE FOLLOWING COMMENT
   # Add new model configurations here
-  
+
 end
 
 # DRYing up owner configurations for models

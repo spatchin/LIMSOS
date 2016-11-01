@@ -35,10 +35,7 @@ class User < ApplicationRecord
   has_many :harvests
 
   validates :role, presence: true, inclusion: { in: ROLES }
-  validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
 
   # override attribute writer
   def first_name=(val)
@@ -50,7 +47,18 @@ class User < ApplicationRecord
     write_attribute(:last_name, val.capitalize)
   end
 
-  # getter for admin
+  # for rails admin to display a name rather than 'User #1'
+  def name
+    if first_name && last_name
+      "#{first_name} #{last_name}"
+    elsif username
+      username
+    else
+      email
+    end
+  end
+
+  # to determine if user is admin
   def admin?
     role == 'Admin'
   end
