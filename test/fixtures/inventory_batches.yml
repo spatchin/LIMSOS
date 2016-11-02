@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: inventory_batches
+#
+#  id              :integer          not null, primary key
+#  name            :string
+#  container_type  :string
+#  supplier_id     :integer
+#  lot_no          :string
+#  comments        :text
+#  created_by      :string
+#  source_batch_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  material_id     :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  container_type: MyString
+  supplier: one
+  lot_no: MyString
+  comments: MyText
+  created_by: MyString
+  source_batch_id: 1
+
+two:
+  name: MyString
+  container_type: MyString
+  supplier: two
+  lot_no: MyString
+  comments: MyText
+  created_by: MyString
+  source_batch_id: 1

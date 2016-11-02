@@ -9,25 +9,22 @@ class RamodelGenerator < Rails::Generators::NamedBase
 
   def add_to_rails_admin_config
     insert_into_file "#{Rails.root}/config/initializers/rails_admin.rb", after: "# Add new model configurations here\n" do
-      ["\tconfig.model #{name.camelize} do",
-      "\t\towner_config",
-      "\tend"].join("\n")
+      ["  config.model #{name.camelize} do",
+      "  end\n"].join("\n")
     end
   end
 
   def add_to_model
     insert_into_file "#{Rails.root}/app/models/#{name.underscore}.rb", after: "class #{name.camelize} < ApplicationRecord\n" do
-      "\thas_paper_trail"
+      "  has_paper_trail\n"
     end
   end
 
   def add_to_cancan
     insert_into_file "#{Rails.root}/app/models/ability.rb", after: "# Add new model permissions here\n" do
-      "\t\t\tcan :manage, #{name.camelize}, owner_id: user.id"
+      "      can :manage, #{name.camelize}\n"
     end
   end
-
-  # print notice to restart server to apply changes
 
   private
 

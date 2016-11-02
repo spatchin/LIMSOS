@@ -60,7 +60,29 @@ RailsAdmin.config do |config|
   end
 
   # Add new model configurations here
+  config.model Material do
+  end
+  
+  config.model MaterialType do
+  end
 
+  config.model InventoryPretreatedFeedstock do
+  end
+
+  config.model InventoryHydrolysate do
+  end
+
+  config.model InventoryUntreatedFeedstock do
+  end
+
+  config.model Inventory do
+  end
+
+  config.model InventoryBatch do
+  end
+
+  config.model Supplier do
+  end
 end
 
 # DRYing up owner configurations for models

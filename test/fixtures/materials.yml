@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: materials
+#
+#  id                :integer          not null, primary key
+#  name              :string
+#  mattype_code      :string
+#  default_unit_code :string
+#  parent_matcode    :string
+#  min_level         :decimal(8, 2)
+#  low_level         :decimal(8, 2)
+#  created_by        :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  mattype_code: MyString
+  default_unit_code: MyString
+  parent_matcode: MyString
+  min_level: 9.99
+  low_level: 9.99
+  created_by: MyString
+
+two:
+  name: MyString
+  mattype_code: MyString
+  default_unit_code: MyString
+  parent_matcode: MyString
+  min_level: 9.99
+  low_level: 9.99
+  created_by: MyString

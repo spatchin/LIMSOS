@@ -1,0 +1,59 @@
+# == Schema Information
+#
+# Table name: inventory_pretreated_feedstocks
+#
+#  id                 :integer          not null, primary key
+#  GLBRC_barcode      :string
+#  pretreat_method    :string
+#  grand_size         :string
+#  operator           :string
+#  notebook_reference :integer
+#  stirring_RPM       :decimal(8, 2)
+#  temperature        :decimal(8, 2)
+#  NH3_loading        :decimal(8, 2)
+#  overpressure       :decimal(8, 2)
+#  residence_time     :decimal(8, 2)
+#  weight             :string
+#  water_loading      :decimal(8, 2)
+#  comments           :text
+#  created_by         :integer
+#  inventory_batch_id :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  GLBRC_barcode: MyString
+  pretreat_method: MyString
+  grand_size: MyString
+  operator: MyString
+  notebook_reference: 1
+  stirring_RPM: 9.99
+  temperature: 9.99
+  NH3_loading: 9.99
+  overpressure: 9.99
+  residence_time: 9.99
+  weight: MyString
+  water_loading: 9.99
+  comments: MyText
+  created_by: 1
+  inventory_batch: one
+
+two:
+  GLBRC_barcode: MyString
+  pretreat_method: MyString
+  grand_size: MyString
+  operator: MyString
+  notebook_reference: 1
+  stirring_RPM: 9.99
+  temperature: 9.99
+  NH3_loading: 9.99
+  overpressure: 9.99
+  residence_time: 9.99
+  weight: MyString
+  water_loading: 9.99
+  comments: MyText
+  created_by: 1
+  inventory_batch: two

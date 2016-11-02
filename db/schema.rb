@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027195236) do
+ActiveRecord::Schema.define(version: 20161102145520) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
@@ -53,6 +53,136 @@ ActiveRecord::Schema.define(version: 20161027195236) do
     t.datetime "updated_at",              null: false
     t.integer  "owner_id"
     t.index ["biomass_id"], name: "index_harvests_on_biomass_id"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "inventory_batch_id"
+    t.integer  "qty"
+    t.integer  "qty_unit"
+    t.string   "status"
+    t.string   "storage_location"
+    t.string   "custodian"
+    t.integer  "owner_id"
+    t.text     "comments"
+    t.string   "created_by"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "inventory_type"
+    t.index ["inventory_batch_id"], name: "index_inventories_on_inventory_batch_id"
+    t.index ["owner_id"], name: "index_inventories_on_owner_id"
+  end
+
+  create_table "inventory_batches", force: :cascade do |t|
+    t.string   "name"
+    t.string   "container_type"
+    t.integer  "supplier_id"
+    t.string   "lot_no"
+    t.text     "comments"
+    t.string   "created_by"
+    t.integer  "source_batch_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "material_id"
+    t.index ["material_id"], name: "index_inventory_batches_on_material_id"
+    t.index ["supplier_id"], name: "index_inventory_batches_on_supplier_id"
+  end
+
+  create_table "inventory_hydrolysates", force: :cascade do |t|
+    t.string   "barcode"
+    t.integer  "custom_batch_no"
+    t.decimal  "batch_volume",       precision: 8, scale: 2
+    t.decimal  "glucan_desired",     precision: 8, scale: 2
+    t.decimal  "glucan_theoretical", precision: 8, scale: 2
+    t.decimal  "biomass_moisture",   precision: 8, scale: 2
+    t.decimal  "source_weight",      precision: 8, scale: 2
+    t.decimal  "batch_weight",       precision: 8, scale: 2
+    t.text     "comments"
+    t.string   "created_by"
+    t.integer  "inventory_batch_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["inventory_batch_id"], name: "index_inventory_hydrolysates_on_inventory_batch_id"
+  end
+
+  create_table "inventory_pretreated_feedstocks", force: :cascade do |t|
+    t.string   "GLBRC_barcode"
+    t.string   "pretreat_method"
+    t.string   "grand_size"
+    t.string   "operator"
+    t.integer  "notebook_reference"
+    t.decimal  "stirring_RPM",       precision: 8, scale: 2
+    t.decimal  "temperature",        precision: 8, scale: 2
+    t.decimal  "NH3_loading",        precision: 8, scale: 2
+    t.decimal  "overpressure",       precision: 8, scale: 2
+    t.decimal  "residence_time",     precision: 8, scale: 2
+    t.string   "weight"
+    t.decimal  "water_loading",      precision: 8, scale: 2
+    t.text     "comments"
+    t.integer  "created_by"
+    t.integer  "inventory_batch_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["inventory_batch_id"], name: "index_inventory_pretreated_feedstocks_on_inventory_batch_id"
+  end
+
+  create_table "inventory_untreated_feedstocks", force: :cascade do |t|
+    t.string   "plant_year"
+    t.date     "plant_date"
+    t.date     "harvest_date"
+    t.string   "plant_location"
+    t.string   "plant_field"
+    t.string   "grand_size"
+    t.text     "comments"
+    t.string   "created_by"
+    t.integer  "inventory_batch_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["inventory_batch_id"], name: "index_inventory_untreated_feedstocks_on_inventory_batch_id"
+  end
+
+  create_table "material_types", force: :cascade do |t|
+    t.string   "mattype_code"
+    t.string   "mat_category"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "materials", force: :cascade do |t|
+    t.string   "name"
+    t.string   "mattype_code"
+    t.string   "default_unit_code"
+    t.string   "parent_matcode"
+    t.decimal  "min_level",         precision: 8, scale: 2
+    t.decimal  "low_level",         precision: 8, scale: 2
+    t.string   "created_by"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  create_table "stuffs", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "barcode"
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_stuffs_on_owner_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "fax"
+    t.string   "contact"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

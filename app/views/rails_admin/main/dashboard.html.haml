@@ -15,10 +15,11 @@
                       = @count[abstract_model.model.name]
               %a.pjax.text-info{href: index_path}
                 .panel-footer
-                  %span.pull-left
-                    %strong= capitalize_first_letter(abstract_model.config.label_plural)
-                  %ul.inline.list-inline.pull-right= menu_for :collection, abstract_model, nil, true
-                  .clearfix
+                  .row
+                    .col-md-6
+                      %strong= capitalize_first_letter(abstract_model.config.label_plural)
+                    .col-md-6.pull-right
+                      %ul.inline.list-inline= menu_for :collection, abstract_model, nil, true
 - if @auditing_adapter && authorized?(:history_index)
   %hr
   #block-tables.block

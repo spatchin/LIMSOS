@@ -15,7 +15,14 @@ class Ability
       can :manage, Feedstock, owner_id: user.id
       can :manage, Harvest, owner_id: user.id
       # Add new model permissions here
-
+      can :manage, Material
+      can :manage, MaterialType
+      can :manage, InventoryPretreatedFeedstock
+      can :manage, InventoryHydrolysate
+      can :manage, InventoryUntreatedFeedstock
+      can :manage, Inventory
+      can :manage, InventoryBatch
+      can :manage, Supplier
     end
   end
 end

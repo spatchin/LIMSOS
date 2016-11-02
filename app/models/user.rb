@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :biomass_types
   has_many :feedstocks
   has_many :harvests
+  has_many :inventories
 
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :email, presence: true, uniqueness: true

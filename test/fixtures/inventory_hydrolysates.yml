@@ -1,0 +1,59 @@
+# == Schema Information
+#
+# Table name: inventory_hydrolysates
+#
+#  id                 :integer          not null, primary key
+#  barcode            :string
+#  custom_batch_no    :integer
+#  batch_volume       :decimal(8, 2)
+#  glucan_desired     :decimal(8, 2)
+#  glucan_theoretical :decimal(8, 2)
+#  biomass_moisture   :decimal(8, 2)
+#  source_weight      :decimal(8, 2)
+#  batch_weight       :decimal(8, 2)
+#  comments           :text
+#  created_by         :string
+#  inventory_batch_id :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  barcode: MyString
+  custom_batch_no: 1
+  batch_volume: 
+  batch_volume: 
+  glucan_desired: 
+  glucan_desired: 
+  glucan_theoretical: 
+  glucan_theoretical: 
+  biomass_moisture: 
+  biomass_moisture: 
+  source_weight: 
+  source_weight: 
+  batch_weight: 
+  batch_weight: 
+  comments: MyText
+  created_by: MyString
+  inventory_batch: one
+
+two:
+  barcode: MyString
+  custom_batch_no: 1
+  batch_volume: 
+  batch_volume: 
+  glucan_desired: 
+  glucan_desired: 
+  glucan_theoretical: 
+  glucan_theoretical: 
+  biomass_moisture: 
+  biomass_moisture: 
+  source_weight: 
+  source_weight: 
+  batch_weight: 
+  batch_weight: 
+  comments: MyText
+  created_by: MyString
+  inventory_batch: two

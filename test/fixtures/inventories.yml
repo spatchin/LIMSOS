@@ -1,0 +1,45 @@
+# == Schema Information
+#
+# Table name: inventories
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  inventory_batch_id :integer
+#  qty                :integer
+#  qty_unit           :integer
+#  status             :string
+#  storage_location   :string
+#  custodian          :string
+#  owner_id           :integer
+#  comments           :text
+#  created_by         :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  inventory_type     :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  inventory_batch: one
+  qty: 1
+  qty_unit: 1
+  status: MyString
+  storage_location: MyString
+  custodian: MyString
+  owner: one
+  comments: MyText
+  created_by: MyString
+
+two:
+  name: MyString
+  inventory_batch: two
+  qty: 1
+  qty_unit: 1
+  status: MyString
+  storage_location: MyString
+  custodian: MyString
+  owner: two
+  comments: MyText
+  created_by: MyString
