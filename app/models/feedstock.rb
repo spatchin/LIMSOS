@@ -19,6 +19,5 @@ class Feedstock < ApplicationRecord
   belongs_to :biomass_type
   belongs_to :harvest
 
-  validates :owner, presence: true
 
 end

@@ -7,6 +7,7 @@
 #  mat_category :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  mattype_name :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

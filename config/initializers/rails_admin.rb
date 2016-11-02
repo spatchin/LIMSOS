@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
     show
     order
     edit
-    delete
+    # delete
     # show_in_app
     history_index
     history_show
@@ -62,7 +62,7 @@ RailsAdmin.config do |config|
   # Add new model configurations here
   config.model Material do
   end
-  
+
   config.model MaterialType do
   end
 
