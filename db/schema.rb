@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102145520) do
+ActiveRecord::Schema.define(version: 20161102154123) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
@@ -63,14 +63,13 @@ ActiveRecord::Schema.define(version: 20161102145520) do
     t.string   "status"
     t.string   "storage_location"
     t.string   "custodian"
-    t.integer  "owner_id"
     t.text     "comments"
     t.string   "created_by"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "inventory_type"
+    t.integer  "owner_id"
     t.index ["inventory_batch_id"], name: "index_inventories_on_inventory_batch_id"
-    t.index ["owner_id"], name: "index_inventories_on_owner_id"
   end
 
   create_table "inventory_batches", force: :cascade do |t|

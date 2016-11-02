@@ -8,7 +8,6 @@ class CreateInventories < ActiveRecord::Migration[5.0]
       t.string :status
       t.string :storage_location
       t.string :custodian
-      t.references :owner, references: :users, foreign_key: true
       t.text :comments
       t.string :created_by
 
