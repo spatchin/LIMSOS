@@ -6,16 +6,16 @@
 #  name               :string
 #  inventory_batch_id :integer
 #  qty                :integer
-#  qty_unit           :integer
+#  qty_unit           :string
 #  status             :string
 #  storage_location   :string
 #  custodian          :string
-#  owner_id           :integer
 #  comments           :text
 #  created_by         :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  inventory_type     :string
+#  owner_id           :integer
 #
 
 class Inventory < ApplicationRecord

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102175631) do
+ActiveRecord::Schema.define(version: 20161102190026) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20161102175631) do
     t.string   "name"
     t.integer  "inventory_batch_id"
     t.integer  "qty"
-    t.integer  "qty_unit"
+    t.string   "qty_unit"
     t.string   "status"
     t.string   "storage_location"
     t.string   "custodian"
