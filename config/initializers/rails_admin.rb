@@ -40,7 +40,7 @@ RailsAdmin.config do |config|
   end
 
   config.model User do
-    include_fields :username, :password, :password_confirmation, :email, :first_name, :last_name, :role
+    include_fields :username, :email, :first_name, :last_name, :role, :current_sign_in_at
   end
 
   config.model BiomassType do
