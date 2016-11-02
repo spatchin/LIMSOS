@@ -160,15 +160,6 @@ ActiveRecord::Schema.define(version: 20161102145520) do
     t.datetime "updated_at",                                null: false
   end
 
-  create_table "stuffs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "barcode"
-    t.integer  "owner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_stuffs_on_owner_id"
-  end
-
   create_table "suppliers", force: :cascade do |t|
     t.string   "name"
     t.string   "address1"
