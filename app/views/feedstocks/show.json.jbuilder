@@ -1,1 +1,0 @@
-json.partial! "feedstocks/feedstock", feedstock: @feedstock

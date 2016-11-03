@@ -19,6 +19,7 @@
 #  username               :string
 #  first_name             :string
 #  last_name              :string
+#  active_ws              :integer
 #
 # Indexes
 #
@@ -55,6 +56,8 @@ class User < ApplicationRecord
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # override attribute writer
   def first_name=(val)

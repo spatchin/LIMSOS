@@ -9,19 +9,19 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, :all
-      cannot :manage, User
-      can :manage, Biomass, owner_id: user.id
-      can :manage, BiomassType, owner_id: user.id
-      can :manage, Feedstock, owner_id: user.id
-      can :manage, Harvest, owner_id: user.id
-      # Add new model permissions here
-      can :manage, Inventory, owner_id: user.id
-      can :manage, InventoryBatch, owner_id: user.id
-      can :manage, InventoryUntreatedFeedstock, owner_id: user.id
-      can :manage, InventoryPretreatedFeedstock, owner_id: user.id
-      can :manage, InventoryHydrolysate, owner_id: user.id
-      can :manage, Material, owner_id: user.id
+      if user.active_ws == 1
+        can :manage, Biomass
+        can :manage, BiomassType
+        can :manage, Feedstock
+        can :manage, Harvest
+      elsif user.active_ws == 2
+        can :manage, Inventory
+        can :manage, InventoryBatch
+        can :manage, InventoryUntreatedFeedstock
+        can :manage, InventoryPretreatedFeedstock
+        can :manage, InventoryHydrolysate
+        can :manage, Material
+      end
     end
   end
 end

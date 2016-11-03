@@ -1,13 +1,33 @@
-%h1 Welcome
-%p 
-  There are:
-  %br
-  = pluralize(User.count, 'user')
-  %br
-  = pluralize(BiomassType.count, 'biomass type')
-  %br
-  = pluralize(Biomass.count, 'biomass')
-  %br
-  = pluralize(Feedstock.count, 'feedstock')
-  %br
-  = pluralize(Harvest.count, 'harvest')
+.row
+  .col-sm-3
+    .panel.panel-success
+      .panel-heading
+        .row
+          .col-xs-3
+            = icon('leaf fa-5x')
+          .col-xs-9.text-right
+            %h4
+              Feedstock Management
+      %a.text-success{href: enter_workspace_path(ws: 1)}
+        .panel-footer
+          %span.pull-left
+            %strong View Workspace
+          %span.pull-right
+            = icon('arrow-circle-right')
+          .clearfix
+  .col-sm-3
+    .panel.panel-warning
+      .panel-heading
+        .row
+          .col-xs-3
+            = icon('list-ol fa-5x')
+          .col-xs-9.text-right
+            %h4
+              Inventory Management
+      %a.text-warning{href: enter_workspace_path(ws: 2)}
+        .panel-footer
+          %span.pull-left
+            %strong View Workspace
+          %span.pull-right
+            = icon('arrow-circle-right')
+          .clearfix

@@ -1,2 +1,0 @@
-json.extract! harvest, :id, :biomass_id, :plot_location, :plot_information, :fertilizer_types, :fertilizer_applications, :soil_information, :weather_information, :storage_location, :planting_date, :harvest_date, :created_at, :updated_at
-json.url harvest_url(harvest, format: :json)

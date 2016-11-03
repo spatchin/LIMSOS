@@ -1,1 +1,0 @@
-json.array! @biomasses, partial: 'biomasses/biomass', as: :biomass

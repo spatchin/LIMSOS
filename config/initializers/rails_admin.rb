@@ -93,11 +93,7 @@ end
 
 # DRYing up owner configurations for models
 def owner_config
-  list do
-    # Don't show owner column in index
-    exclude_fields :owner
-  end
-  edit do
+  create do
     # Don't show owner field in new/edit
     exclude_fields :owner
     field :owner_id, :hidden do

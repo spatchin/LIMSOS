@@ -1,19 +1,11 @@
 %nav.navbar.navbar-default.navbar-fixed-top
-  .container
+  .container-fluid
     .navbar-header
       = link_to 'LIMSOS', '/', class: 'navbar-brand'
     #navbar
       %ul.nav.navbar-nav.navbar-left
         %li#home{class: ('active' if current_page?('/'))}
-          =link_to 'Home', '/', class: 'pjax'
-        / %li#biomass{class: ('active' if current_page?('/biomass'))}
-        /   =link_to 'Biomasses', '/biomass', class: 'pjax'
-        / %li#biomass_type{class: ('active' if current_page?('/biomass_type'))}
-        /   =link_to 'Biomass Types', '/biomass_type', class: 'pjax'
-        / %li#feedstock{class: ('active' if current_page?('/feedstock'))}
-        /   =link_to 'Feedstocks', '/feedstock', class: 'pjax'
-        / %li#harvest{class: ('active' if current_page?('/harvest'))}
-        /   =link_to 'Harvests', '/harvest', class: 'pjax'
+          =link_to 'Home', '/'
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li{class: ['dropdown', ('active' if current_page?(edit_registration_path(current_user)))]}

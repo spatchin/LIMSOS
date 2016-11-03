@@ -1,1 +1,0 @@
-json.partial! "biomasses/biomass", biomass: @biomass

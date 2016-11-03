@@ -24,4 +24,7 @@ class Supplier < ApplicationRecord
   has_many :inventory_batches
 
   validates :name, presence: true
+
+  # rails_admin do
+  # end
 end

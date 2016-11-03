@@ -1,1 +1,0 @@
-json.array! @feedstocks, partial: 'feedstocks/feedstock', as: :feedstock
