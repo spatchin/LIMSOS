@@ -20,6 +20,11 @@
 #  first_name             :string
 #  last_name              :string
 #
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
 
 class User < ApplicationRecord
   ROLES = %w(Admin User).freeze
@@ -34,8 +39,21 @@ class User < ApplicationRecord
   has_many :feedstocks
   has_many :harvests
   has_many :inventories
+  has_many :inventory_batches
+  has_many :inventory_untreated_batches
+  has_many :inventory_pretreated_batches
+  has_many :inventory_hydrolysates
+  has_many :materials
+
+  before_validation(on: :create) do
+    # create a username based on email
+    if attribute_present?(:email) && !attribute_present?(:username)
+      self.username = self.email.split('@').first
+    end
+  end
 
   validates :role, presence: true, inclusion: { in: ROLES }
+  validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
   # override attribute writer

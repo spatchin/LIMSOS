@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102190026) do
+ActiveRecord::Schema.define(version: 20161103154247) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "owner_id"
+    t.index ["owner_id"], name: "index_biomass_types_on_owner_id"
   end
 
   create_table "biomasses", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "owner_id"
+    t.index ["owner_id"], name: "index_biomasses_on_owner_id"
   end
 
   create_table "feedstocks", force: :cascade do |t|
@@ -36,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.integer  "owner_id"
     t.index ["biomass_type_id"], name: "index_feedstocks_on_biomass_type_id"
     t.index ["harvest_id"], name: "index_feedstocks_on_harvest_id"
+    t.index ["owner_id"], name: "index_feedstocks_on_owner_id"
   end
 
   create_table "harvests", force: :cascade do |t|
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.datetime "updated_at",              null: false
     t.integer  "owner_id"
     t.index ["biomass_id"], name: "index_harvests_on_biomass_id"
+    t.index ["owner_id"], name: "index_harvests_on_owner_id"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -64,7 +68,6 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.string   "storage_location"
     t.string   "custodian"
     t.text     "comments"
-    t.string   "created_by"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "inventory_type"
@@ -78,12 +81,13 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.integer  "supplier_id"
     t.string   "lot_no"
     t.text     "comments"
-    t.string   "created_by"
     t.integer  "source_batch_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "material_id"
+    t.integer  "owner_id"
     t.index ["material_id"], name: "index_inventory_batches_on_material_id"
+    t.index ["owner_id"], name: "index_inventory_batches_on_owner_id"
     t.index ["supplier_id"], name: "index_inventory_batches_on_supplier_id"
   end
 
@@ -97,11 +101,12 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.decimal  "source_weight",      precision: 8, scale: 2
     t.decimal  "batch_weight",       precision: 8, scale: 2
     t.text     "comments"
-    t.string   "created_by"
     t.integer  "inventory_batch_id"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.integer  "owner_id"
     t.index ["inventory_batch_id"], name: "index_inventory_hydrolysates_on_inventory_batch_id"
+    t.index ["owner_id"], name: "index_inventory_hydrolysates_on_owner_id"
   end
 
   create_table "inventory_pretreated_feedstocks", force: :cascade do |t|
@@ -118,34 +123,35 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.string   "weight"
     t.decimal  "water_loading",      precision: 8, scale: 2
     t.text     "comments"
-    t.integer  "created_by"
     t.integer  "inventory_batch_id"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.integer  "owner_id"
     t.index ["inventory_batch_id"], name: "index_inventory_pretreated_feedstocks_on_inventory_batch_id"
+    t.index ["owner_id"], name: "index_inventory_pretreated_feedstocks_on_owner_id"
   end
 
   create_table "inventory_untreated_feedstocks", force: :cascade do |t|
-    t.string   "plant_year"
     t.date     "plant_date"
     t.date     "harvest_date"
     t.string   "plant_location"
     t.string   "plant_field"
     t.string   "grand_size"
     t.text     "comments"
-    t.string   "created_by"
     t.integer  "inventory_batch_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "owner_id"
     t.index ["inventory_batch_id"], name: "index_inventory_untreated_feedstocks_on_inventory_batch_id"
+    t.index ["owner_id"], name: "index_inventory_untreated_feedstocks_on_owner_id"
   end
 
   create_table "material_types", force: :cascade do |t|
-    t.string   "mattype_code"
-    t.string   "mat_category"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "mattype_name"
+    t.string   "code"
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "materials", force: :cascade do |t|
@@ -155,9 +161,10 @@ ActiveRecord::Schema.define(version: 20161102190026) do
     t.string   "parent_matcode"
     t.decimal  "min_level",         precision: 8, scale: 2
     t.decimal  "low_level",         precision: 8, scale: 2
-    t.string   "created_by"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.integer  "owner_id"
+    t.index ["owner_id"], name: "index_materials_on_owner_id"
   end
 
   create_table "suppliers", force: :cascade do |t|

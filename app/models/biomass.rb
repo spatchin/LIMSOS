@@ -8,6 +8,10 @@
 #  updated_at :datetime         not null
 #  owner_id   :integer
 #
+# Indexes
+#
+#  index_biomasses_on_owner_id  (owner_id)
+#
 
 class Biomass < ApplicationRecord
   has_paper_trail

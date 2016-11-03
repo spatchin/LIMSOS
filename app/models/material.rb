@@ -9,13 +9,19 @@
 #  parent_matcode    :string
 #  min_level         :decimal(8, 2)
 #  low_level         :decimal(8, 2)
-#  created_by        :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  owner_id          :integer
+#
+# Indexes
+#
+#  index_materials_on_owner_id  (owner_id)
 #
 
 class Material < ApplicationRecord
   has_paper_trail
+
+  belongs_to :owner, class_name: 'User'
 
   has_many :inventory_batches
 

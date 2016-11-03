@@ -8,11 +8,17 @@
 #  supplier_id     :integer
 #  lot_no          :string
 #  comments        :text
-#  created_by      :string
 #  source_batch_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  material_id     :integer
+#  owner_id        :integer
+#
+# Indexes
+#
+#  index_inventory_batches_on_material_id  (material_id)
+#  index_inventory_batches_on_owner_id     (owner_id)
+#  index_inventory_batches_on_supplier_id  (supplier_id)
 #
 
 class InventoryBatch < ApplicationRecord
@@ -20,6 +26,7 @@ class InventoryBatch < ApplicationRecord
 
   belongs_to :supplier
   belongs_to :material
+  belongs_to :owner, class_name: 'User'
 
   has_many :inventories
   has_many :inventory_pretreated_feedstocks

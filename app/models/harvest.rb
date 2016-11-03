@@ -17,12 +17,16 @@
 #  updated_at              :datetime         not null
 #  owner_id                :integer
 #
+# Indexes
+#
+#  index_harvests_on_biomass_id  (biomass_id)
+#  index_harvests_on_owner_id    (owner_id)
+#
 
 class Harvest < ApplicationRecord
   has_paper_trail
 
   belongs_to :owner, class_name: 'User'
   belongs_to :biomass
-
 
 end

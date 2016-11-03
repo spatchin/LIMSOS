@@ -2,12 +2,12 @@
 #
 # Table name: material_types
 #
-#  id           :integer          not null, primary key
-#  mattype_code :string
-#  mattype_name :string
-#  mat_category :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :integer          not null, primary key
+#  code       :string
+#  name       :string
+#  category   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class MaterialType < ApplicationRecord

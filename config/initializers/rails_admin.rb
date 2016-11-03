@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
     show
     order
     edit
-    # delete
+    delete
     # show_in_app
     history_index
     history_show
@@ -61,24 +61,30 @@ RailsAdmin.config do |config|
 
   # Add new model configurations here
   config.model Material do
+    owner_config
   end
 
   config.model MaterialType do
   end
 
   config.model InventoryPretreatedFeedstock do
+    owner_config
   end
 
   config.model InventoryHydrolysate do
+    owner_config
   end
 
   config.model InventoryUntreatedFeedstock do
+    owner_config
   end
 
   config.model Inventory do
+    owner_config
   end
 
   config.model InventoryBatch do
+    owner_config
   end
 
   config.model Supplier do

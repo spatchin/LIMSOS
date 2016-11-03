@@ -11,6 +11,12 @@
 #  updated_at      :datetime         not null
 #  owner_id        :integer
 #
+# Indexes
+#
+#  index_feedstocks_on_biomass_type_id  (biomass_type_id)
+#  index_feedstocks_on_harvest_id       (harvest_id)
+#  index_feedstocks_on_owner_id         (owner_id)
+#
 
 class Feedstock < ApplicationRecord
   has_paper_trail
