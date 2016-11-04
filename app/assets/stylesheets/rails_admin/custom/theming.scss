@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -50px;
+}
+
+#push,
+#footer {
+    height: 60px;
+}
+
+#footer {
+  $primary-color: #3e3e3e;
+  $secondary-color: #ecf0f1;
+  $accent-color: #e7ff6e;
+
+  width: 100%;
+  background-color: $primary-color;
+  color: $secondary-color;
+  padding-top: 20px;
+
+  a {
+    color: $secondary-color;
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
