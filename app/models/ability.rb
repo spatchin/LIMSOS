@@ -6,22 +6,20 @@ class Ability
 
     can :access, :rails_admin
     can :dashboard
-    if user.admin?
-      can :manage, :all
-    else
-      if user.active_ws == 1
-        can :manage, Biomass
-        can :manage, BiomassType
-        can :manage, Feedstock
-        can :manage, Harvest
-      elsif user.active_ws == 2
-        can :manage, Inventory
-        can :manage, InventoryBatch
-        can :manage, InventoryUntreatedFeedstock
-        can :manage, InventoryPretreatedFeedstock
-        can :manage, InventoryHydrolysate
-        can :manage, Material
-      end
+    if user.active_ws == 1
+      can :manage, Biomass
+      can :manage, BiomassType
+      can :manage, Feedstock
+      can :manage, Harvest
+    elsif user.active_ws == 2
+      can :manage, Inventory
+      can :manage, InventoryBatch
+      can :manage, InventoryUntreatedFeedstock
+      can :manage, InventoryPretreatedFeedstock
+      can :manage, InventoryHydrolysate
+      can :manage, Material
+    elsif user.active_ws == 3
+      can :manage, User
     end
   end
 end

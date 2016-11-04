@@ -12,10 +12,15 @@
 #  source_weight      :decimal(8, 2)
 #  batch_weight       :decimal(8, 2)
 #  comments           :text
-#  created_by         :string
 #  inventory_batch_id :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  owner_id           :integer
+#
+# Indexes
+#
+#  index_inventory_hydrolysates_on_inventory_batch_id  (inventory_batch_id)
+#  index_inventory_hydrolysates_on_owner_id            (owner_id)
 #
 
 require 'test_helper'

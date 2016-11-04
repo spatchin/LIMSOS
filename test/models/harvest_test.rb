@@ -17,6 +17,11 @@
 #  updated_at              :datetime         not null
 #  owner_id                :integer
 #
+# Indexes
+#
+#  index_harvests_on_biomass_id  (biomass_id)
+#  index_harvests_on_owner_id    (owner_id)
+#
 
 require 'test_helper'
 

@@ -8,6 +8,10 @@
 #  updated_at :datetime         not null
 #  owner_id   :integer
 #
+# Indexes
+#
+#  index_biomass_types_on_owner_id  (owner_id)
+#
 
 require 'test_helper'
 

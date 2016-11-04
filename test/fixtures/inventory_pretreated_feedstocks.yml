@@ -16,10 +16,15 @@
 #  weight             :string
 #  water_loading      :decimal(8, 2)
 #  comments           :text
-#  created_by         :integer
 #  inventory_batch_id :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  owner_id           :integer
+#
+# Indexes
+#
+#  index_inventory_pretreated_feedstocks_on_inventory_batch_id  (inventory_batch_id)
+#  index_inventory_pretreated_feedstocks_on_owner_id            (owner_id)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -9,9 +9,13 @@
 #  parent_matcode    :string
 #  min_level         :decimal(8, 2)
 #  low_level         :decimal(8, 2)
-#  created_by        :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  owner_id          :integer
+#
+# Indexes
+#
+#  index_materials_on_owner_id  (owner_id)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

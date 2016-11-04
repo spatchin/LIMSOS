@@ -2,9 +2,9 @@ en:
   admin:
     actions:
       dashboard:
-        title: "Dashboard"
-        menu: "Dashboard"
-        breadcrumb: "Dashboard"
+        title: "Workspace"
+        menu: "Workspace"
+        breadcrumb: "Workspace"
       index:
         title: "%{model_label_plural}"
       order: 

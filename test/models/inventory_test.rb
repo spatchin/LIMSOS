@@ -16,6 +16,10 @@
 #  inventory_type     :string
 #  owner_id           :integer
 #
+# Indexes
+#
+#  index_inventories_on_inventory_batch_id  (inventory_batch_id)
+#
 
 require 'test_helper'
 
