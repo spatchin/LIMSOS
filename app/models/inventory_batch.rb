@@ -34,4 +34,7 @@ class InventoryBatch < ApplicationRecord
   has_many :inventory_hydrolysates
 
   validates :name, presence: true
+
+  COLOR = 'info'
+  ICON = 'book'  
 end

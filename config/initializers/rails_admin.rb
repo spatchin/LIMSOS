@@ -1,4 +1,5 @@
-require Rails.root.join('lib', 'rails_admin', 'order.rb')
+# require Rails.root.join('lib', 'rails_admin', 'order.rb')
+require Rails.root.join('lib', 'rails_admin', 'graph.rb')
 
 RailsAdmin.config do |config|
   ## == Devise ==
@@ -27,20 +28,36 @@ RailsAdmin.config do |config|
     # collection actions
     index
     new
+    graph do
+      only Feedstock
+    end
     export
     bulk_delete
     # member actions
-    show
-    order
+    show do
+      except User
+    end
     edit
-    delete
+    delete do
+      except User
+    end
     # show_in_app
     history_index
     history_show
   end
 
   config.model User do
-    include_fields :username, :email, :first_name, :last_name, :role, :current_sign_in_at
+    include_fields :username, :email, :first_name, :last_name, :role, :sign_in_count
+    field :role, :enum do
+      enum do
+        User::ROLES
+      end
+
+      default_value User::ROLES.first
+    end
+    create do
+      exclude_fields :current_sign_in_at
+    end
   end
 
   config.model BiomassType do
@@ -69,14 +86,17 @@ RailsAdmin.config do |config|
 
   config.model InventoryPretreatedFeedstock do
     owner_config
+    label 'Pretreated Feedstock'
   end
 
   config.model InventoryHydrolysate do
     owner_config
+    label 'Hydrolysate'
   end
 
   config.model InventoryUntreatedFeedstock do
     owner_config
+    label 'Untreated Feedstock'
   end
 
   config.model Inventory do

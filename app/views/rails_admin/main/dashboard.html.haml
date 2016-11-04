@@ -4,22 +4,20 @@
       - abstract_models.each do |abstract_model|
         - if authorized? :index, abstract_model
           - index_path = index_path(model_name: abstract_model.to_param)
-          .col-sm-3
-            .panel.panel-info
+          .col-sm-6.col-md-3
+            .panel{class: "panel-#{abstract_model.model::COLOR}"}
               .panel-heading
                 .row
-                  .col-xs-3
-                    = icon('tasks fa-5x')
-                  .col-xs-9.text-right
-                    %h2
+                  .col-sm-2.col-md-3
+                    = icon("#{abstract_model.model::ICON} fa-5x")
+                  .col-sm-10.col-md-9.text-right
+                    %h4
                       = @count[abstract_model.model.name]
-              %a.pjax.text-info{href: index_path}
-                .panel-footer
-                  .row
-                    .col-md-6
+                      %br
                       %strong= capitalize_first_letter(abstract_model.config.label_plural)
-                    .col-md-6.pull-right
-                      %ul.inline.list-inline= menu_for :collection, abstract_model, nil, true
+              %a.pjax.text-info{href: index_path}
+                .panel-footer.text-center
+                  %ul.inline.list-inline= menu_for :collection, abstract_model, nil, true
 - if @auditing_adapter && authorized?(:history_index)
   %hr
   #block-tables.block

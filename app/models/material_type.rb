@@ -12,4 +12,7 @@
 
 class MaterialType < ApplicationRecord
   has_paper_trail
+
+  COLOR = 'info'
+  ICON = 'book'
 end

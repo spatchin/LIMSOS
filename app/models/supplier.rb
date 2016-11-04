@@ -25,6 +25,6 @@ class Supplier < ApplicationRecord
 
   validates :name, presence: true
 
-  # rails_admin do
-  # end
+  COLOR = 'info'
+  ICON = 'book'
 end

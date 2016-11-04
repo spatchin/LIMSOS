@@ -26,4 +26,7 @@ class Material < ApplicationRecord
   has_many :inventory_batches
 
   validates :name, presence: true
+
+  COLOR = 'info'
+  ICON = 'book'
 end

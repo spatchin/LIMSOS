@@ -4,13 +4,13 @@
 - workspace_list.each_slice(4) do |workspaces|
   .row
     -workspaces.each do |workspace|
-      .col-sm-3
+      .col-sm-6.col-md-3
         .panel{class: "panel-#{workspace[3]}"}
           .panel-heading
             .row
-              .col-xs-3
+              .col-sm-3
                 = icon("#{workspace[2]} fa-5x")
-              .col-xs-9.text-right
+              .col-sm-9.text-right
                 %h4
                   = workspace[1].html_safe
           %a{class: "text-#{workspace[3]}", href: enter_workspace_path(ws: workspace[0])}

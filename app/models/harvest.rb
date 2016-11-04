@@ -26,7 +26,11 @@
 class Harvest < ApplicationRecord
   has_paper_trail
 
+  has_many :feedstocks
+
   belongs_to :owner, class_name: 'User'
   belongs_to :biomass
 
+  COLOR = 'warning' # for coloring the workspace panels; based on bs
+  ICON = 'truck'
 end

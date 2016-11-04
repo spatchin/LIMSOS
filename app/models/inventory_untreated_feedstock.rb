@@ -26,4 +26,6 @@ class InventoryUntreatedFeedstock < ApplicationRecord
   belongs_to :inventory_batch
   belongs_to :owner, class_name: 'User'
 
+  COLOR = 'info'
+  ICON = 'book'
 end

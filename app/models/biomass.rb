@@ -15,9 +15,13 @@
 
 class Biomass < ApplicationRecord
   has_paper_trail
-  
+
+  has_many :harvests
+
   belongs_to :owner, class_name: 'User'
 
   validates :name, presence: true
 
+  COLOR = 'success'
+  ICON = 'leaf'
 end

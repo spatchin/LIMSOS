@@ -18,6 +18,10 @@ class BiomassType < ApplicationRecord
 
   belongs_to :owner, class_name: 'User'
 
+  has_many :feedstocks
+
   validates :name, presence: true
 
+  COLOR = 'info'
+  ICON = 'book'
 end

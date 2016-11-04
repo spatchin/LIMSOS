@@ -20,6 +20,7 @@ class Ability
       can :manage, Material
     elsif user.active_ws == 3
       can :manage, User
+      can :history, :all
     end
   end
 end

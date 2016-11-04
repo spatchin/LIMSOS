@@ -28,4 +28,7 @@ class Inventory < ApplicationRecord
   belongs_to :owner, class_name: 'User'
 
   validates :name, presence: true
+
+  COLOR = 'info'
+  ICON = 'book'
 end

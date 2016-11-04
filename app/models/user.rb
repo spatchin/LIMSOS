@@ -29,6 +29,8 @@
 
 class User < ApplicationRecord
   ROLES = %w(Admin User).freeze
+  COLOR = 'primary'
+  ICON = 'users'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -41,8 +43,8 @@ class User < ApplicationRecord
   has_many :harvests
   has_many :inventories
   has_many :inventory_batches
-  has_many :inventory_untreated_batches
-  has_many :inventory_pretreated_batches
+  has_many :inventory_untreated_feedstocks
+  has_many :inventory_pretreated_feedstocks
   has_many :inventory_hydrolysates
   has_many :materials
 
