@@ -1,6 +1,6 @@
 .row
   .col-md-4.col-md-offset-4
-    .panel.panel-default{style: 'margin-top: 20%;'}
+    .panel.panel-default
       .panel-heading
         %h4 Edit profile
       .panel-body
@@ -19,9 +19,9 @@
           = f.password_field :current_password, help: 'You must enter your current password to make changes'
           = f.submit 'Update account', class: 'btn btn-success', style: 'width: 100%;'
 .row
-  .col-md-4.col-md-offset-4 
+  .col-md-4.col-md-offset-4
     .panel.panel-default
       .panel-heading
         %h4 Cancel Account
-      .panel-body  
+      .panel-body
         = link_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger', style: 'width: 100%;'

@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title= "LIMSOS"
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    = csrf_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+  %body
+    #wrap
+      = render 'layouts/navigation'
+      .container
+        = render 'layouts/messages'
+        = yield
+      #push
+    = render "layouts/footer"

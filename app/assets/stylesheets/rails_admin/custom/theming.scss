@@ -3,24 +3,39 @@ body {
   height: 100%;
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -50px;
+// rails_admin overrides
+
+body.rails_admin {
+  padding-top: 0;
+  .form {
+    margin-bottom: 20px;
+  }
+  .pagination {
+    margin: 0;
+  }
 }
 
+// FOOTER
+
+// holds all of the body except the footer and has a negative
+// margine equal to the height of the footer in order to keep the
+// footer at the bottom of the screen
+#wrap {
+  min-height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+// ensures that the negative margin didn't pull the footer up and cover any content
 #push,
 #footer {
     height: 60px;
 }
 
 #footer {
-  $primary-color: #3e3e3e;
-  $secondary-color: #ecf0f1;
-  $accent-color: #e7ff6e;
+  $primary-color: #d4d4d4;
+  $secondary-color: #3e3e3e;
+  $accent-color: #ecf0f1;
 
   width: 100%;
   background-color: $primary-color;

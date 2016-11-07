@@ -18,5 +18,6 @@
       = render "layouts/navigation"
       .container
         .content{:'data-pjax-container' => true}= render template: 'layouts/rails_admin/pjax'
+      / push is to ensure that the negative margin doesn't pull the footer up and cover any content
       #push
     = render "layouts/footer"
