@@ -2,7 +2,7 @@
 :javascript
   $('.nav.nav-pills li.active').removeClass('active');
   $('.nav.nav-pills li[data-model="#{@abstract_model.to_param}"]').addClass('active');
-  
+
   $('#navbar > ul > li.active').removeClass('active');
   $('#navbar > ul > li##{active_li}').addClass('active');
 .page-header

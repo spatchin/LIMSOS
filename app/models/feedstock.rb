@@ -19,6 +19,7 @@
 #
 
 class Feedstock < ApplicationRecord
+  include RailsAdminCharts
   has_paper_trail
 
   belongs_to :owner, class_name: 'User'
@@ -27,4 +28,15 @@ class Feedstock < ApplicationRecord
 
   COLOR = 'warning'
   ICON = 'barcode'
+
+  def self.graph_data since=30.days.ago
+  [
+    {
+      name: 'Admin Users',
+      pointInterval: point_interval = 1.day * 100,
+      pointStart: start_point = since.to_i * 100,
+      data: self.all.delta_records_since(since)
+    }
+  ]
+  end
 end

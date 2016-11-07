@@ -1,5 +1,5 @@
 # require Rails.root.join('lib', 'rails_admin', 'order.rb')
-require Rails.root.join('lib', 'rails_admin', 'graph.rb')
+require Rails.root.join('lib', 'rails_admin', 'delete.rb')
 
 RailsAdmin.config do |config|
   ## == Devise ==
@@ -15,6 +15,13 @@ RailsAdmin.config do |config|
 
   ## == PaperTrail ==
   config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
+  config.model "PaperTrail::Version" do
+    visible false
+  end
+
+  config.model "PaperTrail::VersionAssociation" do
+    visible false
+  end
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
@@ -28,11 +35,9 @@ RailsAdmin.config do |config|
     # collection actions
     index
     new
-    graph do
-      only Feedstock
-    end
     export
     bulk_delete
+    charts
     # member actions
     show do
       except User

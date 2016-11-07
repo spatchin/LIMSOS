@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     current_user.update(active_ws: 0) if user_signed_in?
     if valid_page?
@@ -9,9 +11,6 @@ class PagesController < ApplicationController
   end
 
   def enter_workspace
-    unless user_signed_in?
-      return redirect_to new_user_session_path, notice: 'You must be logged in to enter workspace'
-    end
     current_user.update(active_ws: params[:ws])
     redirect_to rails_admin_path
   end
