@@ -1,4 +1,4 @@
-# require Rails.root.join('lib', 'rails_admin', 'order.rb')
+require Rails.root.join('lib', 'rails_admin', 'deactivate.rb')
 require Rails.root.join('lib', 'rails_admin', 'delete.rb')
 
 RailsAdmin.config do |config|
@@ -29,24 +29,31 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   config.show_gravatar = false
 
+  FS_MANAGEMENT = [Biomass, BiomassType, Feedstock, Harvest]
+  INVENTORY_MANAGEMENT = [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material]
+
   config.actions do
     # root actions
     dashboard
     # collection actions
     index
-    new
+    new do
+      except User
+    end
     export
     bulk_delete
-    charts
+    charts do
+      only FS_MANAGEMENT
+    end
     # member actions
     show do
       except User
     end
     edit
-    delete do
-      except User
+    deactivate do
+      only FS_MANAGEMENT
     end
-    # show_in_app
+    delete
     history_index
     history_show
   end
@@ -61,7 +68,7 @@ RailsAdmin.config do |config|
       default_value User::ROLES.first
     end
     create do
-      exclude_fields :current_sign_in_at
+      exclude_fields :sign_in_count
     end
   end
 
@@ -118,6 +125,15 @@ end
 
 # DRYing up owner configurations for models
 def owner_config
+  edit do
+    # Don't show owner field in new/edit
+    exclude_fields :owner
+    field :owner_id, :hidden do
+      default_value do
+        bindings[:view]._current_user.id
+      end
+    end
+  end
   create do
     # Don't show owner field in new/edit
     exclude_fields :owner

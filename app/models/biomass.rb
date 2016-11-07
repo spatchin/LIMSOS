@@ -7,6 +7,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  owner_id   :integer
+#  active     :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -22,6 +23,6 @@ class Biomass < ApplicationRecord
 
   validates :name, presence: true
 
-  COLOR = 'success'
-  ICON = 'leaf'
+  COLOR = 'success'.freeze
+  ICON = 'leaf'.freeze
 end

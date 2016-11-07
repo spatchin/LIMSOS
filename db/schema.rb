@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107162502) do
+ActiveRecord::Schema.define(version: 20161107195726) do
 
   create_table "biomass_types", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "owner_id"
+    t.boolean  "active",     default: true
     t.index ["owner_id"], name: "index_biomass_types_on_owner_id"
   end
 
   create_table "biomasses", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "owner_id"
+    t.boolean  "active",     default: true
     t.index ["owner_id"], name: "index_biomasses_on_owner_id"
   end
 
@@ -33,9 +35,10 @@ ActiveRecord::Schema.define(version: 20161107162502) do
     t.integer  "harvest_id"
     t.float    "amount"
     t.string   "unit"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "owner_id"
+    t.boolean  "active",          default: true
     t.index ["biomass_type_id"], name: "index_feedstocks_on_biomass_type_id"
     t.index ["harvest_id"], name: "index_feedstocks_on_harvest_id"
     t.index ["owner_id"], name: "index_feedstocks_on_owner_id"
@@ -52,9 +55,10 @@ ActiveRecord::Schema.define(version: 20161107162502) do
     t.string   "storage_location"
     t.date     "planting_date"
     t.date     "harvest_date"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "owner_id"
+    t.boolean  "active",                  default: true
     t.index ["biomass_id"], name: "index_harvests_on_biomass_id"
     t.index ["owner_id"], name: "index_harvests_on_owner_id"
   end

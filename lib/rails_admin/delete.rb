@@ -1,12 +1,10 @@
-require 'rails_admin/config/actions'
-require 'rails_admin/config/actions/base'
-
-module MyRailsAdmin
+module RailsAdmin
   module Config
     module Actions
-      class Delete < RailsAdmin::Config::Actions::Delete
-        RailsAdmin::Config::Actions::register(self)
+      class Delete < RailsAdmin::Config::Actions::Base
+        RailsAdmin::Config::Actions.register(self)
 
+        # this is unchanged from the default action
         register_instance_option :controller do
           proc do
             if request.get? # DELETE
@@ -17,15 +15,10 @@ module MyRailsAdmin
               end
 
             elsif request.delete? # DESTROY
-
               redirect_path = nil
               @auditing_adapter && @auditing_adapter.delete_object(@object, @abstract_model, _current_user)
 
-              # [CUSTOM DELETE] mark as deactivated rather than actually hard delete it
-              # @object.active = false
-
               if @object.destroy
-              # if @object.save
                 flash[:success] = t('admin.flash.successful', name: @model_config.label, action: t('admin.actions.delete.done'))
                 redirect_path = index_path
               else
@@ -38,6 +31,12 @@ module MyRailsAdmin
             end
           end
         end
+
+        # this is different
+        register_instance_option :link_icon do
+          'fa fa-trash'
+        end
+
       end
     end
   end

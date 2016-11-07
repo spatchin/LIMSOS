@@ -7,9 +7,9 @@ en:
         breadcrumb: "Workspace"
       index:
         title: "%{model_label_plural}"
-      graph:
-        title: "Graph"
-        menu: "Graph"
-        breadcrumb: "Graph"
-        bulk_link: "Graph selected %{model_label_plural}"
-        done: "graphed"
+      deactivate:
+        title: "Deactivate"
+        menu: "Deactivate"
+        breadcrumb: "Deactivate"
+        bulk_link: "Deactivate selected %{model_label_plural}"
+        done: "deactivated"

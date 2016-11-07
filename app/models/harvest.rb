@@ -16,6 +16,7 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  owner_id                :integer
+#  active                  :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -31,6 +32,6 @@ class Harvest < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   belongs_to :biomass
 
-  COLOR = 'warning' # for coloring the workspace panels; based on bs
-  ICON = 'truck'
+  COLOR = 'warning'.freeze
+  ICON = 'truck'.freeze
 end

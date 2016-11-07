@@ -10,6 +10,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  owner_id        :integer
+#  active          :boolean          default(TRUE)
 #
 # Indexes
 #
@@ -26,17 +27,7 @@ class Feedstock < ApplicationRecord
   belongs_to :biomass_type
   belongs_to :harvest
 
-  COLOR = 'warning'
-  ICON = 'barcode'
+  COLOR = 'warning'.freeze
+  ICON = 'barcode'.freeze
 
-  def self.graph_data since=30.days.ago
-  [
-    {
-      name: 'Admin Users',
-      pointInterval: point_interval = 1.day * 100,
-      pointStart: start_point = since.to_i * 100,
-      data: self.all.delta_records_since(since)
-    }
-  ]
-  end
 end
