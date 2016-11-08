@@ -247,7 +247,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap_form
   byebug
-  cancancan (~> 1.10)
+  cancancan
   coffee-rails (~> 4.2)
   devise
   faker
