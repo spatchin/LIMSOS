@@ -1,9 +1,6 @@
-/ format: [id<int>, name<string>, icon<string>, color<string>]
-- workspace_list = [[1, 'Feedstock Management', 'leaf', 'success'], [2, 'Inventory Management', 'list-ol', 'warning'], [3, 'User<br>Management', 'users', 'primary']]
-
-- workspace_list.each_slice(4) do |workspaces|
+- User.workspaces.each_slice(4) do |workspace_list|
   .row
-    -workspaces.each do |workspace|
+    -workspace_list.each do |workspace|
       .col-sm-6.col-md-3
         .panel{class: "panel-#{workspace[3]}"}
           .panel-heading

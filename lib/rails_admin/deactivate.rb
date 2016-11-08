@@ -14,9 +14,7 @@ module RailsAdmin
         register_instance_option :controller do
           proc do
             if params[:bulk_ids]
-              params[:bulk_ids].each do |id|
-                @abstract_model.model.update(id, active: false)
-              end
+              @abstract_model.model.where(id: params[:bulk_ids]).update_all(active: false)
               flash[:success] = "#{@model_config.label} is deactivated"
             else
               @object.active = false

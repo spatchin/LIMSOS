@@ -3,17 +3,17 @@
 # Table name: suppliers
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  address1   :string
-#  address2   :string
-#  city       :string
-#  zip        :string
-#  phone1     :string
-#  phone2     :string
-#  fax        :string
-#  contact    :string
-#  email      :string
-#  website    :string
+#  name       :string(255)
+#  address1   :string(255)
+#  address2   :string(255)
+#  city       :string(255)
+#  zip        :string(255)
+#  phone1     :string(255)
+#  phone2     :string(255)
+#  fax        :string(255)
+#  contact    :string(255)
+#  email      :string(255)
+#  website    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

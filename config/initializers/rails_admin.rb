@@ -1,5 +1,4 @@
-require Rails.root.join('lib', 'rails_admin', 'deactivate.rb')
-require Rails.root.join('lib', 'rails_admin', 'delete.rb')
+Dir[Rails.root.join('lib', 'rails_admin', '*.rb')].each { |file| require file }
 
 RailsAdmin.config do |config|
   ## == Devise ==

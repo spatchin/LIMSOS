@@ -3,22 +3,22 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
 #  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  role                   :string           default("User")
-#  username               :string
-#  first_name             :string
-#  last_name              :string
+#  role                   :string(255)      default("User")
+#  username               :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
 #  active_ws              :integer
 #
 # Indexes
@@ -82,8 +82,16 @@ class User < ApplicationRecord
     end
   end
 
-  # to determine if user is admin
   def admin?
     role == 'Admin'
+  end
+
+  # format: [id<int>, name<string>, icon<string>, color<string>]
+  def self.workspaces
+    [
+      [1, 'Feedstock Management', 'leaf', 'success'],
+      [2, 'Inventory Management', 'list-ol', 'warning'],
+      [3, 'User<br>Management', 'users', 'primary']
+    ]
   end
 end

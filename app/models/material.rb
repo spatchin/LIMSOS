@@ -3,10 +3,10 @@
 # Table name: materials
 #
 #  id                :integer          not null, primary key
-#  name              :string
-#  mattype_code      :string
-#  default_unit_code :string
-#  parent_matcode    :string
+#  name              :string(255)
+#  mattype_code      :string(255)
+#  default_unit_code :string(255)
+#  parent_matcode    :string(255)
 #  min_level         :decimal(8, 2)
 #  low_level         :decimal(8, 2)
 #  created_at        :datetime         not null
