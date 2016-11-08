@@ -4,7 +4,7 @@
       = link_to 'LIMSOS', '/', class: 'navbar-brand'
     #navbar
       %ul.nav.navbar-nav.navbar-left
-        %li#home{class: ('active' if current_page?('/'))}
+        %li#home
           =link_to 'Home', '/'
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?

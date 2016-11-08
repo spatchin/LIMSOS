@@ -81,6 +81,12 @@ RailsAdmin.config do |config|
 
   config.model Feedstock do
     owner_config
+    list do
+      include_all_fields
+      field :harvest do
+        searchable [:plot_location, :plot_information, :planting_date, :harvest_date]
+      end
+    end
   end
 
   config.model Harvest do

@@ -1,10 +1,8 @@
-- active_li = @abstract_model.to_param || 'home'
 :javascript
   $('.nav.nav-pills li.active').removeClass('active');
   $('.nav.nav-pills li[data-model="#{@abstract_model.to_param}"]').addClass('active');
 
-  $('#navbar > ul > li.active').removeClass('active');
-  $('#navbar > ul > li##{active_li}').addClass('active');
+%title= "#{@abstract_model.try(:pretty_name) || @page_name} | LIMSOS"
 .page-header
   %h1= @page_name
 - flash && flash.each do |key, value|
