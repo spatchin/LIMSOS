@@ -29,9 +29,9 @@
 
 class InventoryHydrolysate < ApplicationRecord
   has_paper_trail
-  
+
   belongs_to :inventory_batch
 
-  COLOR = 'info'
-  ICON = 'book'  
+  COLOR = 'success'
+  ICON = 'book'
 end

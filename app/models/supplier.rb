@@ -25,6 +25,6 @@ class Supplier < ApplicationRecord
 
   validates :name, presence: true
 
-  COLOR = 'info'
-  ICON = 'book'
+  COLOR = 'primary'
+  ICON = 'address-card'
 end

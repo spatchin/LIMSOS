@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
   config.show_gravatar = false
 
   FS_MANAGEMENT = [Biomass, BiomassType, Feedstock, Harvest]
-  INVENTORY_MANAGEMENT = [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material]
+  INVENTORY_MANAGEMENT = [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material, MaterialType, Supplier]
 
   config.actions do
     # root actions

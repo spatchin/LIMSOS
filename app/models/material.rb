@@ -27,6 +27,6 @@ class Material < ApplicationRecord
 
   validates :name, presence: true
 
-  COLOR = 'info'
-  ICON = 'book'
+  COLOR = 'warning'
+  ICON = 'archive'
 end
