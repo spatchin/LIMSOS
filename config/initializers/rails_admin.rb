@@ -41,6 +41,7 @@ RailsAdmin.config do |config|
     end
     export
     bulk_delete
+    adv_search
     charts do
       only FS_MANAGEMENT
     end
@@ -80,13 +81,13 @@ RailsAdmin.config do |config|
   end
 
   config.model Feedstock do
-    owner_config
     list do
       include_all_fields
       field :harvest do
         searchable [:plot_location, :plot_information, :planting_date, :harvest_date]
       end
     end
+    owner_config
   end
 
   config.model Harvest do

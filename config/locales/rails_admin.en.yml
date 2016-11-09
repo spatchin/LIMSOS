@@ -13,3 +13,7 @@ en:
         breadcrumb: "Deactivate"
         bulk_link: "Deactivate selected %{model_label_plural}"
         done: "deactivated"
+      adv_search:
+        title: "Advanced Search"
+        menu: "Adv Search"
+        breadcrumb: "Adv Search"

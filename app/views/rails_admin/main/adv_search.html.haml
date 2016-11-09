@@ -1,0 +1,49 @@
+- params = request.params.except(:action, :controller, :utf8, :page, :per_page, :format, :authenticity_token)
+- visible_fields = @model_config.export.with(view: self, object: @abstract_model.model.new, controller: self.controller).visible_fields
+
+= search_form_for(@q, url: adv_search_path(params.merge(all: true)), html: { method: :post }) do |f|
+
+  %input{name: "send_data", type: "hidden", value: "true"}/
+  %fieldset
+    %legend
+      Select fields to search from
+    .form-group.control-group
+      .col-sm-12
+        .well.well-sm{rel: 'tooltip', :'data-original-title' => t('admin.export.click_to_reverse_selection'), onclick: 'jQuery(this).closest(".control-group").find(".controls").find("input").click()', style: 'margin: 0; cursor: pointer;'}
+          %b= t('admin.export.fields_from', name: @model_config.label_plural.downcase)
+        .controls
+          .row
+            - visible_fields.select{ |f| !f.association? || f.association.polymorphic? }.each do |field|
+              - list = field.virtual? ? 'methods' : 'only'
+              .checkbox.col-sm-3
+                - if field.association? && field.association.polymorphic?
+                  %label{for: "schema_#{list}_#{field.method_name}"}
+                    = check_box_tag "schema[#{list}][]", field.method_name, true, { id: "schema_#{list}_#{field.method_name}" }
+                    = field.label + " [id]"
+                  - polymorphic_type_column_name = @abstract_model.properties.detect {|p| field.association.foreign_type == p.name }.name
+                  %label{for: "schema_#{list}_#{polymorphic_type_column_name}"}
+                    = check_box_tag "schema[#{list}][]", polymorphic_type_column_name, true, { id: "schema_#{list}_#{polymorphic_type_column_name}" }
+                    = capitalize_first_letter(field.label) + " [type]"
+                - else
+                  %label{for: "schema_#{list}_#{field.name}"}
+                    = check_box_tag "schema[#{list}][]", field.name, true, { id: "schema_#{list}_#{field.name}" }
+                    = capitalize_first_letter(field.label)
+
+    - visible_fields.select{ |f| f.association? && !f.association.polymorphic? }.each do |field|
+      - fields = field.associated_model_config.export.with(controller: self.controller, view: self, object: (associated_model = field.associated_model_config.abstract_model.model).new).visible_fields.select{ |f| !f.association? }
+      .form-group.control-group
+        .col-sm-12
+          .well.well-sm{rel: 'tooltip', :'data-original-title' => t('admin.export.click_to_reverse_selection'), onclick: 'jQuery(this).closest(".control-group").find(".controls").find("input").click()', style: 'margin: 0; cursor: pointer;'}
+            %b= t('admin.export.fields_from_associated', name: field.label.downcase)
+          .controls
+            .row
+              - fields.each do |associated_model_field|
+                - list = associated_model_field.virtual? ? 'methods' : 'only'
+                .checkbox.col-sm-3
+                  %label{for: "schema_include_#{field.name}_#{list}_#{associated_model_field.name}"}
+                    = check_box_tag "schema[include][#{field.name}][#{list}][]", associated_model_field.name, true, { id: "schema_include_#{field.name}_#{list}_#{associated_model_field.name}" }
+                    = capitalize_first_letter(associated_model_field.label)
+
+  .form-group.form-actions
+    %button.btn.btn-brimary{type: 'submit', name: 'Search'}
+      Search
