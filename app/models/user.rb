@@ -19,7 +19,7 @@
 #  username               :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  active_ws              :integer
+#  active_ws              :integer          default(0)
 #
 # Indexes
 #
@@ -84,14 +84,5 @@ class User < ApplicationRecord
 
   def admin?
     role == 'Admin'
-  end
-
-  # format: [id<int>, name<string>, icon<string>, color<string>]
-  def self.workspaces
-    [
-      [1, 'Feedstock Management', 'leaf', 'success'],
-      [2, 'Inventory Management', 'list-ol', 'warning'],
-      [3, 'User<br>Management', 'users', 'primary']
-    ]
   end
 end

@@ -8,6 +8,7 @@
 #  category   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  active     :boolean          default(TRUE)
 #
 
 class MaterialType < ApplicationRecord

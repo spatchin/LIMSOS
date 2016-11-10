@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107195726) do
+ActiveRecord::Schema.define(version: 20161110162104) do
 
   create_table "biomass_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -72,10 +72,11 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "storage_location"
     t.string   "custodian"
     t.text     "comments",           limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "inventory_type"
     t.integer  "owner_id"
+    t.boolean  "active",                           default: true
     t.index ["inventory_batch_id"], name: "index_inventories_on_inventory_batch_id", using: :btree
   end
 
@@ -86,10 +87,11 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "lot_no"
     t.text     "comments",        limit: 65535
     t.integer  "source_batch_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "material_id"
     t.integer  "owner_id"
+    t.boolean  "active",                        default: true
     t.index ["material_id"], name: "index_inventory_batches_on_material_id", using: :btree
     t.index ["owner_id"], name: "index_inventory_batches_on_owner_id", using: :btree
     t.index ["supplier_id"], name: "index_inventory_batches_on_supplier_id", using: :btree
@@ -106,9 +108,10 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.decimal  "batch_weight",                     precision: 8, scale: 2
     t.text     "comments",           limit: 65535
     t.integer  "inventory_batch_id"
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                                              null: false
+    t.datetime "updated_at",                                                              null: false
     t.integer  "owner_id"
+    t.boolean  "active",                                                   default: true
     t.index ["inventory_batch_id"], name: "index_inventory_hydrolysates_on_inventory_batch_id", using: :btree
     t.index ["owner_id"], name: "index_inventory_hydrolysates_on_owner_id", using: :btree
   end
@@ -128,9 +131,10 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.decimal  "water_loading",                    precision: 8, scale: 2
     t.text     "comments",           limit: 65535
     t.integer  "inventory_batch_id"
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.datetime "created_at",                                                              null: false
+    t.datetime "updated_at",                                                              null: false
     t.integer  "owner_id"
+    t.boolean  "active",                                                   default: true
     t.index ["inventory_batch_id"], name: "index_inventory_pretreated_feedstocks_on_inventory_batch_id", using: :btree
     t.index ["owner_id"], name: "index_inventory_pretreated_feedstocks_on_owner_id", using: :btree
   end
@@ -143,9 +147,10 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "grand_size"
     t.text     "comments",           limit: 65535
     t.integer  "inventory_batch_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "owner_id"
+    t.boolean  "active",                           default: true
     t.index ["inventory_batch_id"], name: "index_inventory_untreated_feedstocks_on_inventory_batch_id", using: :btree
     t.index ["owner_id"], name: "index_inventory_untreated_feedstocks_on_owner_id", using: :btree
   end
@@ -154,8 +159,9 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "code"
     t.string   "name"
     t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true
   end
 
   create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -165,9 +171,10 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "parent_matcode"
     t.decimal  "min_level",         precision: 8, scale: 2
     t.decimal  "low_level",         precision: 8, scale: 2
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.integer  "owner_id"
+    t.boolean  "active",                                    default: true
     t.index ["owner_id"], name: "index_materials_on_owner_id", using: :btree
   end
 
@@ -183,8 +190,9 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "contact"
     t.string   "email"
     t.string   "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -204,7 +212,7 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "active_ws"
+    t.integer  "active_ws",              default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -228,6 +236,16 @@ ActiveRecord::Schema.define(version: 20161107195726) do
     t.integer  "transaction_id"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
     t.index ["transaction_id"], name: "index_versions_on_transaction_id", using: :btree
+  end
+
+  create_table "workspaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "color"
+    t.string   "icon"
+    t.text     "models",     limit: 65535
+    t.boolean  "admin_only",               default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_foreign_key "feedstocks", "biomass_types"

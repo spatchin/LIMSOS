@@ -10,29 +10,30 @@ class Ability
     can :access, :rails_admin
     can :dashboard
     if user.admin?
-      case user.active_ws
-      when 1
-        can :manage, FS_MANAGEMENT
-        cannot :deactivate, FS_MANAGEMENT, active: false
-      when 2
-        can :manage, INVENTORY_MANAGEMENT
-      when 3
-        can :manage, User
+      workspace = Workspace.find_by_id(user.active_ws)
+      if workspace && workspace.name == 'Administration'
+        can :manage, workspace.models
         can :history, :all
+        cannot [:import, :show], workspace.models
+      elsif workspace
+        can :manage, workspace.models
+        cannot :deactivate, workspace.models, active: false
+      else
+        can :manage, :all
       end
     else
-      case user.active_ws
-      when 1
-        can :manage, FS_MANAGEMENT, active: true
-        cannot :destroy, FS_MANAGEMENT
-      when 2
-        can :manage, INVENTORY_MANAGEMENT
-      when 3
-        can :manage, User
-        cannot [:destroy, :edit], User
+      workspace = Workspace.find_by_id(user.active_ws)
+      if workspace && workspace.name == 'Administration'
+        can :manage, workspace.models
         can :history, :all
+        cannot [:create, :destroy, :import, :edit], Workspace
+        cannot [:create, :destroy, :edit], User
+      elsif workspace
+        can :manage, workspace.models, active: true
+        cannot :destroy, workspace.models
+      else
+        cannot :manage, :all
       end
     end
-
   end
 end

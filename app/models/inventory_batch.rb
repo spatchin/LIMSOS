@@ -13,6 +13,7 @@
 #  updated_at      :datetime         not null
 #  material_id     :integer
 #  owner_id        :integer
+#  active          :boolean          default(TRUE)
 #
 # Indexes
 #

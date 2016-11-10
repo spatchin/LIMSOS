@@ -28,9 +28,6 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   config.show_gravatar = false
 
-  FS_MANAGEMENT = [Biomass, BiomassType, Feedstock, Harvest]
-  INVENTORY_MANAGEMENT = [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material, MaterialType, Supplier]
-
   config.actions do
     # root actions
     dashboard
@@ -42,20 +39,32 @@ RailsAdmin.config do |config|
     export
     bulk_delete
     adv_search
-    charts do
-      only FS_MANAGEMENT
-    end
+    charts
     # member actions
     show do
       except User
     end
     edit
     deactivate do
-      only FS_MANAGEMENT
+      except [User, Workspace]
     end
     delete
     history_index
     history_show
+  end
+
+  config.model Workspace do
+    list do
+      include_all_fields
+      field :models do
+        pretty_value do
+          value.join(', ')
+        end
+      end
+    end
+    edit do
+      exclude_fields :models
+    end
   end
 
   config.model User do

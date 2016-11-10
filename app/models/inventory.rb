@@ -15,6 +15,7 @@
 #  updated_at         :datetime         not null
 #  inventory_type     :string(255)
 #  owner_id           :integer
+#  active             :boolean          default(TRUE)
 #
 # Indexes
 #

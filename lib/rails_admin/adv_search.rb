@@ -21,7 +21,6 @@ module RailsAdmin
         register_instance_option :link_icon do
           'fa fa-search'
         end
-
       end
     end
   end

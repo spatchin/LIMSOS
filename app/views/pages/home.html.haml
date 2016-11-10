@@ -2,19 +2,19 @@
 
 .page-header
   %h1= 'Home'
-- User.workspaces.each_slice(4) do |workspace_list|
+- Workspace.all.each_slice(4) do |workspace_list|
   .row
     -workspace_list.each do |workspace|
       .col-sm-6.col-md-3
-        .panel{class: "panel-#{workspace[3]}"}
+        .panel{class: "panel-#{workspace.color}"}
           .panel-heading
             .row
               .col-sm-3
-                = icon("#{workspace[2]} fa-5x")
+                = icon("#{workspace.icon} fa-5x")
               .col-sm-9.text-right
                 %h4
-                  = workspace[1].html_safe
-          %a{class: "text-#{workspace[3]}", href: enter_workspace_path(ws: workspace[0])}
+                  = workspace.name.html_safe
+          %a{class: "text-#{workspace.color}", href: enter_workspace_path(ws: workspace.id)}
             .panel-footer
               %span.pull-left
                 %strong View Workspace
