@@ -11,10 +11,16 @@ module RailsAdmin
           true
         end
 
+        register_instance_option :http_methods do
+          [:get, :post]
+        end
+
         register_instance_option :controller do
           proc do
             @q = @abstract_model.model.ransack(params[:q])
-            @objects = @q.result(distinct: true)
+            @objects = @q.result
+            @objects = @objects.page(params[:page]) unless params[:all]
+            @q.build_condition if @q.conditions.empty?
           end
         end
 

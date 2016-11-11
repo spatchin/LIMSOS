@@ -35,12 +35,13 @@ class InventoryBatch < ApplicationRecord
   belongs_to :owner, class_name: 'User'
 
   has_many :inventories
-  has_many :inventory_pretreated_feedstocks
-  has_many :inventory_untreated_feedstocks
-  has_many :inventory_hydrolysates
+  has_one :inventory_pretreated_feedstock
+  has_one :inventory_untreated_feedstock
+  has_one :inventory_hydrolysate
 
+  # validate on mat type
   validates :name, presence: true
 
   COLOR = 'info'
-  ICON = 'book'  
+  ICON = 'book'
 end

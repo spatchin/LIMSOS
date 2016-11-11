@@ -1,0 +1,17 @@
+.field
+  .row
+    .col-sm-3
+      .form-group
+        = f.attribute_fields do |a|
+          = a.attribute_select({associations: @abstract_model.model.ransackable_associations}, {class: 'form-control'})
+    .col-sm-3
+      .form-group
+        = f.predicate_select({}, {class: 'form-control'})
+    .col-sm-3
+      .form-group
+        = f.value_fields do |v|
+          = render 'value_fields', f: v
+    .col-sm-3
+      .more.btn-group
+        = link_to_add_fields('Add Keyword', f, :value)
+        = link_to 'Remove Condition', '#', class: 'remove_fields btn btn-default'

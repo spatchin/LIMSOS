@@ -41,9 +41,7 @@ RailsAdmin.config do |config|
     adv_search
     charts
     # member actions
-    show do
-      except User
-    end
+    show
     edit
     deactivate do
       except [User, Workspace]

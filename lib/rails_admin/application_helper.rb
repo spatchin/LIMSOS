@@ -1,0 +1,17 @@
+require 'rails_admin/support/i18n'
+
+# Add additional helper methods to the default helper methods
+module RailsAdmin
+  module ApplicationHelper
+    include RailsAdmin::Support::I18n
+
+    def link_to_add_fields(name, f, type)
+      new_object = f.object.send "build_#{type}"
+      id = "new_#{type}"
+      fields = f.send("#{type}_fields", new_object, child_index: id) do |builder|
+        render(type.to_s + '_fields', f: builder)
+      end
+      link_to(name, '#', class: 'add_fields btn btn-default', data: { id: id, fields: fields.gsub("\n", '') })
+    end
+  end
+end

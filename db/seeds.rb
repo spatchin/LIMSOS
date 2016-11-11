@@ -15,7 +15,7 @@ Workspace.destroy_all
 WORKSPACES = [
                [1, 'Feedstock Management', 'leaf', 'success', [Biomass, BiomassType, Feedstock, Harvest]],
                [2, 'Inventory Management', 'list-ol', 'warning', [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material, MaterialType, Supplier]],
-               [3, 'Administration', 'users', 'primary', [User, Workspace], true]
+               [3, 'Administration', 'book', 'primary', [User, Workspace], true]
              ]
 
 WORKSPACES.each do |ws|
