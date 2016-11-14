@@ -78,7 +78,7 @@
             - if export_action
               = link_to wording_for(:link, export_action), export_path(params.except('set').except('page')), class: 'btn btn-info'
             - if (all_property_labels - property_labels).any?
-            =link_to 'Show All Columns', '#', id: 'btnAllCol', class: 'btn btn-default', style: 'margin-bottom: 10px;'
+              =link_to 'Show All Columns', '#', id: 'btnAllCol', class: 'btn btn-default', style: 'margin-bottom: 10px;'
   - unless @model_config.list.scopes.empty?
     %ul.nav.nav-tabs#scope_selector
       - @model_config.list.scopes.each_with_index do |scope, index|
@@ -96,7 +96,7 @@
           %tr
             %th.shrink
               %input.toggle{type: "checkbox"}
-            - all_properties.each do |property|
+            - properties.each do |property|
               - selected = (sort == property.name.to_s)
               - if property.sortable
                 - sort_location = index_path params.except('sort_reverse').except('page').merge(sort: property.name).merge(selected && sort_reverse != "true" ? {sort_reverse: "true"} : {})
@@ -108,7 +108,7 @@
             %tr{class: "#{@abstract_model.param_key}_row clickable-row", data: { href: "#{rails_admin.url_for(action: :show, controller: 'rails_admin/main', model_name: @abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))}"} }
               %td
                 = check_box_tag "bulk_ids[]", object.id, false
-              - all_properties.map{ |property| property.bind(:object, object) }.each do |property|
+              - properties.map{ |property| property.bind(:object, object) }.each do |property|
                 - value = property.pretty_value
                 %td{class: "#{property.css_class} #{property.type_css_class}#{' hidcell' unless property_labels.include?(property.label)}", title: strip_tags(value.to_s), style: property_labels.include?(property.label) ? '' : 'display: none;'}= value.present? ? value : '-'
               %td.last.links
@@ -116,6 +116,7 @@
     - if @objects.respond_to?(:total_count)
       - total_count = @objects.total_count.to_i
       .row
+        / TODO: i don't like this, make sure to change it
         .col-md-4= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
         .col-md-4.text-right.pagination= page_entries_info @objects, entry_name: @model_label_plural
         .col-md-4.text-right= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") if total_count > 20 || total_count <= @objects.to_a.size
