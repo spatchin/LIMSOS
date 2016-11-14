@@ -1,7 +1,7 @@
 = provide(:title, 'Home')
 
-.page-header
-  %h1= 'Home'
+%h1= 'Home'
+%hr
 - Workspace.all.each_slice(4) do |workspace_list|
   .row
     -workspace_list.each do |workspace|

@@ -10,22 +10,30 @@
   export_action = nil unless export_action && authorized?(export_action.authorization_key, @abstract_model)
   description = RailsAdmin.config(@abstract_model.model_name).description
   properties = @model_config.list.with(controller: self.controller, view: self, object: @abstract_model.model.new).visible_fields
-
   all_properties = @model_config.export.with(view: self, object: @abstract_model.model.new, controller: self.controller).visible_fields
   property_labels = properties.map { |p| p.label }
   all_property_labels = all_properties.map { |p| p.label }
-= console
+
 :javascript
-  jQuery(document).ready(function($) {
+  $(document).ready(function() {
     $(".clickable-row").click(function() {
-        window.document.location = $(this).data("href");
+      window.document.location = $(this).data("href");
     });
 
-    $('#btnAllCol').click(function () {
+    $('#btnAllCol').click(function (e) {
+      $('.hidcell').toggle();
 
+      if ($(this).text() == 'Show All Columns') {
+        $(this).text('Hide Optional Columns');
+      } else if ($(this).text() == 'Hide Optional Columns') {
+        $(this).text('Show All Columns');
+      }
+
+      e.preventDefault();
+      $(this).blur();
     });
   });
-
+  // part of the original
   jQuery(function($) {
     #{ordered_filter_string}
   });
@@ -53,20 +61,24 @@
 #list
   = form_tag(index_path(params.except(*%w[page f query])), method: :get, class: "pjax-form form-inline") do
     .well
-      %span#filters_box
-      %hr.filters_box{style: "display:#{ordered_filters.empty? ? 'none' : 'block'}"}
-      .input-group
-        %input.form-control.input-small{name: "query", type: "search", value: query, placeholder: t("admin.misc.filter")}
-        %span.input-group-btn
-          %button.btn.btn-primary{type: 'submit', :'data-disable-with' => '<i class="icon-white icon-refresh"></i> '.html_safe + t('admin.misc.refresh')}
-            %i.icon-white.icon-refresh
-            = t('admin.misc.refresh')
-          %button#remove_filter.btn.btn-info{title: "Reset filters"}
-            %i.icon-white.icon-remove
-      .btn-group{style: 'float: right;'}
-        - if export_action
-          = link_to wording_for(:link, export_action), export_path(params.except('set').except('page')), class: 'btn btn-info'
-        =link_to 'Show All Columns', '#', id: 'btnAllCol', class: 'btn btn-default', style: 'margin-bottom: 10px;'
+      .row
+        .col-xs-6
+          %span#filters_box
+          %hr.filters_box{style: "display:#{ordered_filters.empty? ? 'none' : 'block'}"}
+          .input-group
+            %input.form-control.input-small{name: "query", type: "search", value: query, placeholder: t("admin.misc.filter")}
+            %span.input-group-btn
+              %button.btn.btn-primary{type: 'submit', :'data-disable-with' => '<i class="icon-white icon-refresh"></i> '.html_safe + t('admin.misc.refresh')}
+                %i.icon-white.icon-refresh
+                = t('admin.misc.refresh')
+              %button#remove_filter.btn.btn-info{title: "Reset filters"}
+                %i.icon-white.icon-remove
+        .col-xs-6
+          .btn-group{style: 'float: right;'}
+            - if export_action
+              = link_to wording_for(:link, export_action), export_path(params.except('set').except('page')), class: 'btn btn-info'
+            - if (all_property_labels - property_labels).any?
+            =link_to 'Show All Columns', '#', id: 'btnAllCol', class: 'btn btn-default', style: 'margin-bottom: 10px;'
   - unless @model_config.list.scopes.empty?
     %ul.nav.nav-tabs#scope_selector
       - @model_config.list.scopes.each_with_index do |scope, index|
@@ -89,16 +101,16 @@
               - if property.sortable
                 - sort_location = index_path params.except('sort_reverse').except('page').merge(sort: property.name).merge(selected && sort_reverse != "true" ? {sort_reverse: "true"} : {})
                 - sort_direction = (sort_reverse == 'true' ? "headerSortUp" : "headerSortDown" if selected)
-              %th{class: "#{property.sortable && "header pjax" || nil} #{sort_direction if property.sortable && sort_direction} #{property.css_class} #{property.type_css_class} text-center", :'data-href' => (property.sortable && sort_location), rel: "tooltip", title: "#{property.hint}", style: property_labels.include?(property.label) ? '' : 'display: none;'}= capitalize_first_letter(property.label)
+              %th{class: "#{property.sortable && "header pjax" || nil} #{sort_direction if property.sortable && sort_direction} #{property.css_class} #{property.type_css_class} text-center#{' hidcell' unless property_labels.include?(property.label)}", :'data-href' => (property.sortable && sort_location), rel: "tooltip", title: "#{property.hint}", style: property_labels.include?(property.label) ? '' : 'display: none;'}= capitalize_first_letter(property.label)
             %th.last.shrink.text-center Actions
         %tbody
           - @objects.each do |object|
             %tr{class: "#{@abstract_model.param_key}_row clickable-row", data: { href: "#{rails_admin.url_for(action: :show, controller: 'rails_admin/main', model_name: @abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))}"} }
               %td
                 = check_box_tag "bulk_ids[]", object.id, false
-              - properties.map{ |property| property.bind(:object, object) }.each do |property|
+              - all_properties.map{ |property| property.bind(:object, object) }.each do |property|
                 - value = property.pretty_value
-                %td{class: "#{property.css_class} #{property.type_css_class}", title: strip_tags(value.to_s), style: "padding-left: 15px;"}= value.present? ? value : '-'
+                %td{class: "#{property.css_class} #{property.type_css_class}#{' hidcell' unless property_labels.include?(property.label)}", title: strip_tags(value.to_s), style: property_labels.include?(property.label) ? '' : 'display: none;'}= value.present? ? value : '-'
               %td.last.links
                 %ul.inline.list-inline= menu_for :member, @abstract_model, object, true
     - if @objects.respond_to?(:total_count)

@@ -93,7 +93,8 @@ RailsAdmin.config do |config|
 
   config.model Feedstock do
     list do
-      configure :amount do
+      include_all_fields
+      field :amount do
         pretty_value do
           value.to_s + " #{bindings[:object].unit}" if bindings[:object].respond_to?(:unit)
         end

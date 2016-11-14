@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts 'clearing database...'
+
 User.destroy_all
 Feedstock.destroy_all
 Harvest.destroy_all
@@ -17,7 +19,8 @@ WORKSPACES = [
                [2, 'Inventory Management', 'list-ol', 'warning', [Inventory, InventoryBatch, InventoryHydrolysate, InventoryUntreatedFeedstock, InventoryPretreatedFeedstock, Material, MaterialType, Supplier]],
                [3, 'Administration', 'book', 'primary', [User, Workspace], true]
              ]
-
+             
+puts 'seeding...'
 WORKSPACES.each do |ws|
   Workspace.create({id: ws[0], name: ws[1], icon: ws[2], color: ws[3], models: ws[4], admin_only: ws[5] ? true : false})
 end
@@ -31,7 +34,7 @@ user2.save!
 admin_user = User.new({username: Faker::Internet.domain_word, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 'Admin'})
 admin_user.save!
 
-100.times do |i|
+1000.times do |i|
   a = Biomass.create(name: Faker::Beer.name)
   a.owner = user
   a.save!
@@ -48,3 +51,4 @@ admin_user.save!
   d.owner = user
   d.save!
 end
+puts 'done'

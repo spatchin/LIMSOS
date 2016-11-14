@@ -16,6 +16,9 @@ body.rails_admin {
   .pagination, .show-all {
     margin-top: 5px;
   }
+  h1 {
+    margin: 10px 0;
+  }
 }
 
 // TABLE
@@ -51,7 +54,7 @@ body.rails_admin {
 .table-bordered > tbody > tr > td{
   // used to vertically center elements.
   line-height: 34px;
-  // padding-left: 20px;
+  padding: 0 10px;
 }
 
 
