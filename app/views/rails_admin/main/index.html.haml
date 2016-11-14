@@ -10,11 +10,25 @@
   export_action = nil unless export_action && authorized?(export_action.authorization_key, @abstract_model)
   description = RailsAdmin.config(@abstract_model.model_name).description
   properties = @model_config.list.with(controller: self.controller, view: self, object: @abstract_model.model.new).visible_fields
-  # columns paginate
-  sets = get_column_sets(properties)
-  properties = sets[params[:set].to_i] || []
-  other_left = ((params[:set].to_i - 1) >= 0) && sets[params[:set].to_i - 1].present?
-  other_right = sets[params[:set].to_i + 1].present?
+
+  all_properties = @model_config.export.with(view: self, object: @abstract_model.model.new, controller: self.controller).visible_fields
+  property_labels = properties.map { |p| p.label }
+  all_property_labels = all_properties.map { |p| p.label }
+= console
+:javascript
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+
+    $('#btnAllCol').click(function () {
+
+    });
+  });
+
+  jQuery(function($) {
+    #{ordered_filter_string}
+  });
 
 - content_for :contextual_tabs do
   = bulk_menu
@@ -32,16 +46,10 @@
             - ''
           %li
             %a{href: '#', :"data-field-label" => field.label, :"data-field-name" => field.name, :"data-field-options" => field_options.html_safe, :"data-field-type" => field.type, :"data-field-value" => "", :"data-field-datetimepicker-format" => (field.try(:parser) && field.parser.to_momentjs)}= capitalize_first_letter(field.label)
-
-:javascript
-  jQuery(function($) {
-  #{ordered_filter_string}
-  });
 %style
   - properties.select{ |p| p.column_width.present? }.each do |property|
     = "#list th.#{property.css_class} { width: #{property.column_width}px; min-width: #{property.column_width}px; }"
     = "#list td.#{property.css_class} { max-width: #{property.column_width}px; }"
-
 #list
   = form_tag(index_path(params.except(*%w[page f query])), method: :get, class: "pjax-form form-inline") do
     .well
@@ -55,59 +63,49 @@
             = t('admin.misc.refresh')
           %button#remove_filter.btn.btn-info{title: "Reset filters"}
             %i.icon-white.icon-remove
-      - if export_action
-        %span{style: 'float:right'}= link_to wording_for(:link, export_action), export_path(params.except('set').except('page')), class: 'btn btn-info'
-
+      .btn-group{style: 'float: right;'}
+        - if export_action
+          = link_to wording_for(:link, export_action), export_path(params.except('set').except('page')), class: 'btn btn-info'
+        =link_to 'Show All Columns', '#', id: 'btnAllCol', class: 'btn btn-default', style: 'margin-bottom: 10px;'
   - unless @model_config.list.scopes.empty?
     %ul.nav.nav-tabs#scope_selector
       - @model_config.list.scopes.each_with_index do |scope, index|
         - scope = '_all' if scope.nil?
         %li{class: "#{'active' if scope.to_s == params[:scope] || (params[:scope].blank? && index == 0)}"}
           %a{href: index_path(params.merge(scope: scope, page: nil)), class: 'pjax'}= I18n.t("admin.scopes.#{@abstract_model.to_param}.#{scope}", default: I18n.t("admin.scopes.#{scope}", default: scope.to_s.titleize))
-
   = form_tag bulk_action_path(model_name: @abstract_model.to_param), method: :post, id: "bulk_form", class: "form" do
     = hidden_field_tag :bulk_action
     - if description.present?
       %p
         %strong= description
     .table-responsive
-      %table.table.table-condensed.table-hover
+      %table.table.table-condensed.table-striped.table-hover.table-bordered
         %thead
           %tr
             %th.shrink
               %input.toggle{type: "checkbox"}
-            - if other_left
-              %th.other.left.shrink= "..."
-            - properties.each do |property|
+            - all_properties.each do |property|
               - selected = (sort == property.name.to_s)
               - if property.sortable
                 - sort_location = index_path params.except('sort_reverse').except('page').merge(sort: property.name).merge(selected && sort_reverse != "true" ? {sort_reverse: "true"} : {})
                 - sort_direction = (sort_reverse == 'true' ? "headerSortUp" : "headerSortDown" if selected)
-              %th{class: "#{property.sortable && "header pjax" || nil} #{sort_direction if property.sortable && sort_direction} #{property.css_class} #{property.type_css_class}", :'data-href' => (property.sortable && sort_location), rel: "tooltip", title: "#{property.hint}"}= capitalize_first_letter(property.label)
-            - if other_right
-              %th.other.right.shrink= "..."
-            %th.last.shrink
+              %th{class: "#{property.sortable && "header pjax" || nil} #{sort_direction if property.sortable && sort_direction} #{property.css_class} #{property.type_css_class} text-center", :'data-href' => (property.sortable && sort_location), rel: "tooltip", title: "#{property.hint}", style: property_labels.include?(property.label) ? '' : 'display: none;'}= capitalize_first_letter(property.label)
+            %th.last.shrink.text-center Actions
         %tbody
           - @objects.each do |object|
-            %tr{class: "#{@abstract_model.param_key}_row"}
+            %tr{class: "#{@abstract_model.param_key}_row clickable-row", data: { href: "#{rails_admin.url_for(action: :show, controller: 'rails_admin/main', model_name: @abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))}"} }
               %td
                 = check_box_tag "bulk_ids[]", object.id, false
-              - if @other_left_link ||= other_left && index_path(params.except('set').merge(params[:set].to_i != 1 ? {set: (params[:set].to_i - 1)} : {}))
-                %td.other.left= link_to "...", @other_left_link, class: 'pjax'
               - properties.map{ |property| property.bind(:object, object) }.each do |property|
                 - value = property.pretty_value
-                %td{class: "#{property.css_class} #{property.type_css_class}", title: strip_tags(value.to_s)}= value
-              - if @other_right_link ||= other_right && index_path(params.merge(set: (params[:set].to_i + 1)))
-                %td.other.right= link_to "...", @other_right_link, class: 'pjax'
+                %td{class: "#{property.css_class} #{property.type_css_class}", title: strip_tags(value.to_s), style: "padding-left: 15px;"}= value.present? ? value : '-'
               %td.last.links
                 %ul.inline.list-inline= menu_for :member, @abstract_model, object, true
-
     - if @objects.respond_to?(:total_count)
       - total_count = @objects.total_count.to_i
       .row
-        .col-md-6= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
-        .col-md-6.text-right= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") unless total_count > 100 || total_count <= @objects.to_a.size
-      = page_entries_info @objects, entry_name: @model_label_plural
-
+        .col-md-4= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
+        .col-md-4.text-right.pagination= page_entries_info @objects, entry_name: @model_label_plural
+        .col-md-4.text-right= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") if total_count > 20 || total_count <= @objects.to_a.size
     - else
       .clearfix.total-count= "Displaying all <strong>#{@objects.size}</strong> #{@model_config.pluralize(@objects.size).downcase}".html_safe

@@ -61,7 +61,7 @@
       %p
         %strong= description
     .table-responsive
-      %table.table.table-condensed.table-hover
+      %table.table.table-condensed.table-hover.table-striped.table-bordered
         %thead
           %tr
             %th.shrink
@@ -97,7 +97,7 @@
       .row
         .col-md-6= paginate(@objects, theme: 'ra-twitter-bootstrap', remote: true)
         / This is different than index
-        .col-md-6.text-right= link_to(t("admin.misc.show_all"), adv_search_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") unless total_count > 100 || total_count <= @objects.to_a.size
+        .col-md-6.text-right= link_to(t("admin.misc.show_all"), adv_search_path(params.merge(all: true)), class: "show-all btn btn-default clearfix pjax") if total_count > 20 || total_count <= @objects.to_a.size
       = page_entries_info @objects, entry_name: @model_label_plural
     - else
       .clearfix.total-count= "Displaying all <strong>#{@objects.size}</strong> #{@model_config.pluralize(@objects.size).downcase}".html_safe

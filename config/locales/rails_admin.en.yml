@@ -17,3 +17,5 @@ en:
         title: "Advanced Search"
         menu: "Adv Search"
         breadcrumb: "Adv Search"
+    form:
+      are_you_sure_you_want_to_deactivate_the_object: "Are you sure you want to deactivate this %{model_name}"

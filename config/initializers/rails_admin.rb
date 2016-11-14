@@ -28,6 +28,9 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   config.show_gravatar = false
 
+  # Display empty fields in show view
+  config.compact_show_view = false
+
   config.actions do
     # root actions
     dashboard
@@ -46,7 +49,9 @@ RailsAdmin.config do |config|
     deactivate do
       except [User, Workspace]
     end
-    delete
+    delete do
+      except [User]
+    end
     history_index
     history_show
   end
@@ -71,7 +76,6 @@ RailsAdmin.config do |config|
       enum do
         User::ROLES
       end
-
       default_value User::ROLES.first
     end
     create do
@@ -89,15 +93,31 @@ RailsAdmin.config do |config|
 
   config.model Feedstock do
     list do
-      include_all_fields
-      field :harvest do
-        searchable [:plot_location, :plot_information, :planting_date, :harvest_date]
+      configure :amount do
+        pretty_value do
+          value.to_s + " #{bindings[:object].unit}" if bindings[:object].respond_to?(:unit)
+        end
+      end
+      exclude_fields :unit
+    end
+    show do
+      configure :amount do
+        pretty_value do
+          value.to_s + " #{bindings[:object].unit}" if bindings[:object].respond_to?(:unit)
+        end
       end
     end
     owner_config
   end
 
   config.model Harvest do
+    list do
+      field :id
+      field :biomass
+      field :plot_location
+      field :plot_information
+      field :planting_date
+    end
     owner_config
   end
 

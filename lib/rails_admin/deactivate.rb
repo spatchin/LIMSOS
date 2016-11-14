@@ -11,20 +11,31 @@ module RailsAdmin
           true
         end
 
+        register_instance_option :http_methods do
+          [:get, :put]
+        end
+
         register_instance_option :controller do
           proc do
-            if params[:bulk_ids]
-              @abstract_model.model.where(id: params[:bulk_ids]).update_all(active: false)
-              flash[:success] = "#{@model_config.label} is deactivated"
-            else
-              @object.active = false
-              if @object.save
+            if request.get?
+              respond_to do |format|
+                format.html { render @action.template_name }
+                format.js   { render @action.template_name, layout: false }
+              end
+            elsif request.put?
+              if params[:bulk_ids]
+                @abstract_model.model.where(id: params[:bulk_ids]).update_all(active: false)
                 flash[:success] = "#{@model_config.label} is deactivated"
               else
-                flash[:error] = "#{@model_config.label} could not be deactivated"
+                @object.active = false
+                if @object.save
+                  flash[:success] = "#{@model_config.label} is deactivated"
+                else
+                  flash[:error] = "#{@model_config.label} could not be deactivated"
+                end
               end
+              redirect_to index_path
             end
-            redirect_to index_path
           end
         end
 
@@ -35,7 +46,6 @@ module RailsAdmin
         register_instance_option :bulkable? do
           true
         end
-
       end
     end
   end
