@@ -5,7 +5,7 @@ RailsAdmin.config do |config|
   config.actions do
     all
     import do
-      except ['User']
+      except ['User', 'Workspace']
     end
   end
 

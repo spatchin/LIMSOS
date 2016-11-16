@@ -9,7 +9,6 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   config.authorize_with :cancan
-  # or
   # config.authorize_with :pundit
 
   ## == PaperTrail ==
@@ -112,13 +111,6 @@ RailsAdmin.config do |config|
   end
 
   config.model Harvest do
-    list do
-      field :id
-      field :biomass
-      field :plot_location
-      field :plot_information
-      field :planting_date
-    end
     owner_config
   end
 

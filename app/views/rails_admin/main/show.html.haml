@@ -2,15 +2,14 @@
   - unless (fields = fieldset.with(object: @object, view: self, controller: self.controller).visible_fields).empty?
     - if !(values = fields.map{ |f| f.formatted_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
       .fieldset
-        %h4
+        %h4.text-center
           = fieldset.label
         - if fieldset.help
           %p= fieldset.help
-        %dl
+        %table.table-bordered{align: :center}
           - fields.each_with_index do |field, index|
             - unless values[index].nil? && RailsAdmin::config.compact_show_view
-              %dt
-                %span.label.label-info{class: "#{field.type_css_class} #{field.css_class}"}
-                  = field.label
-              %dd.well
-                = field.pretty_value == '' ? '-' : field.pretty_value
+              %tr
+                %td
+                  %strong= field.label
+                %td= field.pretty_value == '' ? '-' : field.pretty_value

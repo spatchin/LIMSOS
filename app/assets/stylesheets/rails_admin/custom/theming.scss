@@ -26,6 +26,9 @@ body.rails_admin {
   overflow-x: auto;
   margin:0;
   width: 100%;
+  .clickable-row{
+    cursor: pointer;
+  }
 }
 .table-bordered > thead > tr > th {
   font-size: medium;
