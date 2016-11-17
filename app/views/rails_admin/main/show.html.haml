@@ -13,15 +13,23 @@
                 %td
                   %strong= field.label
                 %td= field.pretty_value == '' ? '-' : field.pretty_value
-  / - associated_fields = fields.select { |f| f.association? && !f.association.polymorphic? }
-  / = console
-  / - associated_fields.each do |afieldset|
-  /   - if afieldset.type == :belongs_to_association
-  /     %h4.text-center
-  /       = afieldset.label
-  /     %table.table-bordered{align: :center}
-  /       - afieldset.attributes.each do |k, v|
-  /         %tr
-  /           %td
-  /             %strong= k.humanize
-  /           %td= v.present? ? v : '-'
+  - unless (associated_fields = fields.select { |f| f.association? && !f.association.polymorphic? && f.label != 'Owner'}).empty?
+    %hr
+    - associated_fields.each do |afields|
+      - next unless afields.value.present?
+      %h4.text-center{data: { toggle: 'collapse', target: "##{afields.label.parameterize}_collapse"}}
+        = afields.label
+      - associated_objects = []
+      - if afields.value.respond_to?(:to_a)
+        - afields.value.to_a.each { |a| associated_objects << a }
+      - else
+        - associated_objects << afields.value
+      .div{id: "#{afields.label.parameterize}_collapse", class: 'collapse'}
+        - associated_objects.each do |aobject|
+          %table.table-bordered{align: :center}
+            - aobject.attributes.each do |k, v|
+              %tr
+                %td
+                  %strong= k.humanize
+                %td= v
+          %br
