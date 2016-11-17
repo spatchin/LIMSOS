@@ -3,10 +3,9 @@
 %h1= 'Home'
 %hr
 - permitted_workspaces = current_user.admin? ? Workspace.all : Workspace.where(admin_only: false)
-- Workspace.all.each_slice(4) do |workspace_list|
+- permitted_workspaces.each_slice(4) do |workspace_list|
   .row
     -workspace_list.each do |workspace|
-      - next if workspace.admin_only &&
       .col-sm-6.col-md-3
         .panel{class: "panel-#{workspace.color}"}
           .panel-heading
