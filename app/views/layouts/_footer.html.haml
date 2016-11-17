@@ -1,4 +1,6 @@
 #footer
   .container
-    .text-center
-      = link_to "&copy; #{Date.today.year} Great Lakes Bioenergy Research Center".html_safe, "http://www.glbrc.org"
+    .row
+      .col-sm-6.text-left= link_to "&copy; #{Date.today.year} Great Lakes Bioenergy Research Center".html_safe, "http://www.glbrc.org"
+      .col-sm-6.text-right
+        version: b1
