@@ -31,9 +31,6 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
 end
-group :production do
-  gem 'rails_12factor'
-end
 gem 'annotate'
 gem 'rails_admin'
 gem 'rails_admin_import'
