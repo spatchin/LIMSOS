@@ -23,12 +23,7 @@ class Ability
       end
     else
       workspace = Workspace.find_by_id(user.active_ws)
-      if workspace && workspace.name == 'Administration'
-        can :manage, workspace.models
-        can :history, :all
-        cannot [:create, :destroy, :import, :edit], Workspace
-        cannot [:create, :destroy, :edit], User
-      elsif workspace
+      if workspace
         can :manage, workspace.models, active: true
         cannot :destroy, workspace.models
       else

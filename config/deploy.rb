@@ -1,6 +1,3 @@
-# config valid only for current version of Capistrano
-lock '3.6.1'
-
 set :application, 'limsos'
 set :repo_url, 'git@gitlab.wei.wisc.edu:smpatchin/rails-app-maker.git'
 
@@ -34,4 +31,3 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-set :rvm_ruby_version, '2.3.1'
