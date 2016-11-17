@@ -25,8 +25,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'rails_layout'
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger', '>= 0.1.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
 end
 group :production do
   gem 'rails_12factor'
