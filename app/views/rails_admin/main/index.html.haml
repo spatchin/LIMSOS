@@ -102,9 +102,10 @@
               %th.last.shrink.text-center Actions
           %tbody
             - @objects.each do |object|
-              %tr{class: "#{@abstract_model.param_key}_row clickable-row", data: { href: "#{rails_admin.url_for(action: :show, controller: 'rails_admin/main', model_name: @abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))}"} }
-                %td
+              %tr{class: "#{@abstract_model.param_key}_row", data: { href: "#{rails_admin.url_for(action: :show, controller: 'rails_admin/main', model_name: @abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))}"} }
+                %td{class: 'clickable-row'}
                   = check_box_tag "bulk_ids[]", object.id, false
+                }
                 - properties.map{ |property| property.bind(:object, object) }.each do |property|
                   - value = property.pretty_value
                   %td{class: "#{property.css_class} #{property.type_css_class} #{property.name.to_s}_toggle", title: strip_tags(value.to_s)}= value.present? ? value : '-'
