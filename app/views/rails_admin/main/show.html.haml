@@ -13,3 +13,17 @@
                 %td
                   %strong= field.label
                 %td= field.pretty_value == '' ? '-' : field.pretty_value
+  / - associated_fields = fields.select { |f| f.association? && !f.association.polymorphic? }
+  / = console
+  / - if !(associated_values = associated_fields.map{ |f| f.formatted_value.presence }).compact.empty? || !RailsAdmin::config.compact_show_view
+  /   - associated_fields.each do |afield|
+  /     .fieldset
+  /       %h4.text-center
+  /         = afield.label
+  /       %table.table-bordered{align: :center}
+  /         - afields.each_with_index do |field, index|
+  /           - unless values[index].nil? && RailsAdmin::config.compact_show_view
+  /             %tr
+  /               %td
+  /                 %strong= field.label
+  /               %td= field.pretty_value == '' ? '-' : field.pretty_value
