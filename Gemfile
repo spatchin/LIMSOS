@@ -36,7 +36,7 @@ gem 'rails_admin'
 gem 'rails_admin_import'
 gem 'rails_admin_charts'
 gem 'rails_admin_history_rollback'
-gem 'cancancan'
-gem 'paper_trail'
-gem 'faker'
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'cancancan' # permission
+gem 'paper_trail' # history
+gem 'faker' # fake data
+gem 'ransack', github: 'activerecord-hackery/ransack' # adv search
