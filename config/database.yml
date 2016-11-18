@@ -4,7 +4,7 @@ default: &default
   pool: 5
   username: name
   password: P@ssw0rd
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
