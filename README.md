@@ -1,0 +1,1 @@
+A LIMS program based around the RailsAdmin gem
