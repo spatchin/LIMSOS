@@ -38,10 +38,15 @@ RailsAdmin.config do |config|
     new do
       except User
     end
-    export
     bulk_delete
-    adv_search
+    adv_search do
+      except [Workspace]
+    end
+    export
     charts
+    history_index do
+      except [Workspace]
+    end
     # member actions
     show
     edit
@@ -49,8 +54,9 @@ RailsAdmin.config do |config|
       except [User, Workspace]
     end
     delete
-    history_index
-    history_show
+    history_show do
+      except [Workspace]
+    end
   end
 
   config.model Workspace do
