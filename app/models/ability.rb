@@ -11,7 +11,6 @@ class Ability
       if workspace && workspace.name == 'Administration'
         can :manage, workspace.models
         can :history, :all
-        cannot [:import, :show], workspace.models
       elsif workspace
         can :manage, workspace.models
         cannot :deactivate, workspace.models, active: false

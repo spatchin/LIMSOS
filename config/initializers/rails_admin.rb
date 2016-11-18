@@ -48,9 +48,7 @@ RailsAdmin.config do |config|
     deactivate do
       except [User, Workspace]
     end
-    delete do
-      except [User]
-    end
+    delete
     history_index
     history_show
   end

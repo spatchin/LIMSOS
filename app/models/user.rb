@@ -37,16 +37,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :biomasses
-  has_many :biomass_types
-  has_many :feedstocks
-  has_many :harvests
-  has_many :inventories
-  has_many :inventory_batches
-  has_many :inventory_untreated_feedstocks
-  has_many :inventory_pretreated_feedstocks
-  has_many :inventory_hydrolysates
-  has_many :materials
+  has_many :biomasses, foreign_key: 'owner_id'
+  has_many :biomass_types, foreign_key: 'owner_id'
+  has_many :feedstocks, foreign_key: 'owner_id'
+  has_many :harvests, foreign_key: 'owner_id'
+  has_many :inventories, foreign_key: 'owner_id'
+  has_many :inventory_batches, foreign_key: 'owner_id'
+  has_many :inventory_untreated_feedstocks, foreign_key: 'owner_id'
+  has_many :inventory_pretreated_feedstocks, foreign_key: 'owner_id'
+  has_many :inventory_hydrolysates, foreign_key: 'owner_id'
+  has_many :materials, foreign_key: 'owner_id'
 
   before_validation(on: :create) do
     # create a username based on email

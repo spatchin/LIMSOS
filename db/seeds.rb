@@ -35,11 +35,11 @@ admin_user = User.new({username: Faker::Internet.domain_word, first_name: Faker:
 admin_user.save!
 
 1000.times do
-  a = Biomass.create(name: Faker::Beer.name)
+  a = Biomass.create(name: Faker::Name.first_name)
   a.owner = user
   a.save!
 
-  b = BiomassType.create(name: Faker::Beer.style)
+  b = BiomassType.create(name: Faker::Name.last_name)
   b.owner = user
   b.save!
 
