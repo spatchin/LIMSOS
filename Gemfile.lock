@@ -203,6 +203,10 @@ GEM
       lazy_high_charts (>= 1.4.3)
       rails (>= 3.2)
       rails_admin (> 0)
+    rails_admin_history_rollback (0.1.0)
+      paper_trail (>= 3.0.6)
+      rails (>= 4.2.0)
+      rails_admin (>= 0.6.6)
     rails_admin_import (2.0.0)
       haml (~> 4.0)
       rails (>= 3.2)
@@ -302,6 +306,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_admin
   rails_admin_charts
+  rails_admin_history_rollback
   rails_admin_import
   rails_layout
   ransack!
