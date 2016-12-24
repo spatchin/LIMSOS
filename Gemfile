@@ -18,6 +18,9 @@ gem 'high_voltage'
 group :development, :test do
   gem 'byebug', platform: :mri
 end
+group :production do
+  gem 'pg'
+end
 group :development do
   gem 'web-console'
   gem 'listen'
